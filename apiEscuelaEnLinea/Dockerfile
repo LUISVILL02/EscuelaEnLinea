@@ -1,0 +1,8 @@
+FROM postgres:15-alpine
+
+ENV POSTGRES_USER arqui
+ENV POSTGRES_PASSWORD 2024
+ENV POSTGRES_DB escuela-en-linea-db
+
+EXPOSE 5432
+
