@@ -1,4 +1,4 @@
-import { Auth, LandingPage } from "../../components";
+import { Auth, LandingPage, Layout } from "../../components";
 import { routes } from "../../config";
 import {
   createBrowserRouter,
@@ -17,7 +17,11 @@ const router = createBrowserRouter([
 ]);
 
 function RouterProvider() {
-  return <ReactRouterProvider router={router} />;
+  return (
+    <Layout>
+      <ReactRouterProvider router={router} />
+    </Layout>
+  );
 }
 
 export default RouterProvider;
