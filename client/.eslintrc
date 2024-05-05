@@ -1,0 +1,42 @@
+{
+  "root": true,
+  "env": { "browser": true, "es2020": true },
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended"
+  ],
+  "ignorePatterns": ["dist"],
+  "parserOptions": { "ecmaVersion": "latest", "sourceType": "module" },
+  "settings": { "react": { "version": "18.2" } },
+  "plugins": [
+    "prettier",
+    "import",
+    "react-refresh"
+  ],
+  "rules": {
+    "curly": "error",
+    "eqeqeq": "error",
+    "no-unused-vars": "warn",
+    "prefer-const": "warn",
+    "react/jsx-fragments": "warn",
+    "react/jsx-no-target-blank": "off",
+    "react/jsx-no-undef": 2,
+    "semi": ["error", "always"],
+    "eol-last": ["error", "always"],
+    "no-console": ["error", { "allow": ["debug", "error", "info", "warn"]}],
+    "no-duplicate-imports": ["error", { "includeExports": true }],
+    "no-multiple-empty-lines": ["error", { "max": 1, "maxBOF": 0, "maxEOF": 0 }],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "quotes": ["error", "double"],
+    "react/no-unstable-nested-components": ["error", { "allowAsProps": true }],
+    "react-refresh/only-export-components": ["warn", { "allowConstantExport": true }]
+  }
+}
