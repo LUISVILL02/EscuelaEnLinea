@@ -21,4 +21,8 @@ public class Acudiente extends Usuario{
     //cita
     @OneToMany(mappedBy = "acudiente")
     List<Cita> citas;
+
+    //alumno
+    @OneToMany(mappedBy = "acudiente")
+    List<Alumno> alumnos;
 }
