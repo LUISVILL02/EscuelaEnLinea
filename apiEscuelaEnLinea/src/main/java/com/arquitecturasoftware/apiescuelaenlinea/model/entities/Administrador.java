@@ -1,5 +1,6 @@
 package com.arquitecturasoftware.apiescuelaenlinea.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,5 +18,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AttributeOverride(name = "idUser", column = @Column(name = "id_admin"))
 public class Administrador extends Usuario{
+    @JsonFormat(pattern = "dd/MM/yyyy",timezone = "GMT-5")
     private LocalDate fechaNacimiento;
 }

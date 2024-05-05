@@ -22,4 +22,16 @@ public class Profesor extends Usuario{
     //cita
     @OneToMany(mappedBy = "profesor")
     private List<Cita> citas;
+
+    //curso
+    @OneToMany(mappedBy = "profesor")
+    private List<Curso> cursos;
+
+    //observacion
+    @OneToMany(mappedBy = "profesor")
+    private List<Observacion> observaciones;
+
+    //asignacion
+    @OneToMany(mappedBy = "profesor")
+    private List<Asignacion> asignaciones;
 }

@@ -1,28 +1,23 @@
 package com.arquitecturasoftware.apiescuelaenlinea.model.entities;
 
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table(name = "citas")
+@Table(name = "asignaciones")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Builder
-public class Cita {
+public class Asignacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCita;
-    private String descripcion;
-    private LocalDateTime fechaCreacion;
-    private LocalDateTime fechaCita;
+    private Long idAsignacion;
 
     //relationship
     //profesor
@@ -30,13 +25,12 @@ public class Cita {
     @JoinColumn(name = "id_profesor")
     private Profesor profesor;
 
-    //acudiente
+    //Asignatura
     @ManyToOne
-    @JoinColumn(name = "id_acudiente")
-    private Acudiente acudiente;
+    @JoinColumn(name = "id_asignatura")
+    private Asignatura asignatura;
 
-    //estadoCita
-    @ManyToOne
-    @JoinColumn(name = "idEstadoCita")
-    private EstadoCita estadoCita;
+    //Nota
+    @OneToMany(mappedBy = "asignacion")
+    private List<Nota> notas;
 }
