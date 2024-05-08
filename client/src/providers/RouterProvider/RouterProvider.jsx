@@ -1,4 +1,4 @@
-import { Auth, LandingPage } from "../../components";
+import { Auth, LandingPage, Layout } from "../../components";
 import { routes } from "../../config";
 import {
   createBrowserRouter,
@@ -7,12 +7,18 @@ import {
 
 const router = createBrowserRouter([
   {
-    path: routes.AUTH,
-    element: <Auth />,
-  },
-  {
-    path: routes.LANDING_PAGE,
-    element: <LandingPage />,
+    path: routes.HOME,
+    element: <Layout />,
+    children: [
+      {
+        path: routes.HOME,
+        element: <LandingPage />,
+      },
+      {
+        path: routes.AUTH,
+        element: <Auth />,
+      },
+    ],
   },
 ]);
 
