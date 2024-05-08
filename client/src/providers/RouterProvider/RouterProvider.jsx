@@ -7,21 +7,23 @@ import {
 
 const router = createBrowserRouter([
   {
-    path: routes.AUTH,
-    element: <Auth />,
-  },
-  {
-    path: routes.LANDING_PAGE,
-    element: <LandingPage />,
+    path: routes.HOME,
+    element: <Layout />,
+    children: [
+      {
+        path: routes.HOME,
+        element: <LandingPage />,
+      },
+      {
+        path: routes.AUTH,
+        element: <Auth />,
+      },
+    ],
   },
 ]);
 
 function RouterProvider() {
-  return (
-    <Layout>
-      <ReactRouterProvider router={router} />
-    </Layout>
-  );
+  return <ReactRouterProvider router={router} />;
 }
 
 export default RouterProvider;
