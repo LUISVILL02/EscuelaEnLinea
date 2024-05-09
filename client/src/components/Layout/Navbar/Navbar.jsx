@@ -37,6 +37,8 @@ export default function Navbar() {
     },
   ];
 
+  let sesion = false;
+
   return (
     <Box>
       <Flex
@@ -72,10 +74,8 @@ export default function Navbar() {
           <Box display={{ base: "center", md: "block" }}>
             <img src={logo} alt="logo" width={150} />
           </Box>
-
-          <Flex display={{ base: "none", md: "flex" }} ml={5}>
-            <DesktopNav navItems={NAV_ITEMS} />
-          </Flex>
+          {// no hay navbar
+          }
         </Flex>
 
         <Stack
@@ -84,7 +84,7 @@ export default function Navbar() {
           direction={"row"}
           spacing={6}
         >
-          <Button
+          {sesion && <Button
             as={"a"}
             display={{ base: "inline-flex", md: "inline-flex" }}
             fontSize={"sm"}
@@ -97,7 +97,7 @@ export default function Navbar() {
             }}
           >
             {buttonText}
-          </Button>
+          </Button>} 
         </Stack>
       </Flex>
 

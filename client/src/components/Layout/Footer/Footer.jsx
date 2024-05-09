@@ -37,8 +37,9 @@ const SocialButton = ({ children, label, href }) => {
 export default function Footer() {
   return (
     <Box
-      bg={useColorModeValue("gray.50", "gray.900")}
-      color={useColorModeValue("gray.700", "gray.200")}
+      bg={useColorModeValue("#4D44B5", "gray.900")}
+      color={useColorModeValue("white", "gray.200")}
+      h={{xl: "max-content"}}
       // position="fixed"
       // bottom="0"
       // left="0"
@@ -52,6 +53,7 @@ export default function Footer() {
         spacing={4}
         justify={{ base: "center", md: "space-between" }}
         align={{ base: "center", md: "center" }}
+        h={{xl: "82px"}}
       >
         <img src={logo} alt="logo" width={150} />
         <Text>© 2022 Escuela en linea. Todo los derechos reservados</Text>
