@@ -2,21 +2,20 @@ import {
   Box,
   Flex,
   IconButton,
-  Button,
   Stack,
   Collapse,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { IoExitOutline } from "react-icons/io5";
+
 import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
 import logo from "../../../assets/icons/logo.png";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
-  const buttonText = useBreakpointValue({ base: "X", md: "Cerrar sesión" });
 
   const NAV_ITEMS = [
     {
@@ -58,7 +57,11 @@ export default function Navbar() {
           <IconButton
             onClick={onToggle}
             icon={
-              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
+              isOpen ? (
+                <AiOutlineClose w={3} h={3} />
+              ) : (
+                <AiOutlineMenu w={5} h={5} />
+              )
             }
             variant={"ghost"}
             aria-label={"Toggle Navigation"}
@@ -69,10 +72,9 @@ export default function Navbar() {
           justify={{ base: "center", md: "start" }}
           alignItems="center"
         >
-          <Box display={{ base: "center", md: "block" }}>
+          <Box display={{ base: "center", md: "block" }} mr={5}>
             <img src={logo} alt="logo" width={150} />
           </Box>
-
           <Flex display={{ base: "none", md: "flex" }} ml={5}>
             <DesktopNav navItems={NAV_ITEMS} />
           </Flex>
@@ -84,20 +86,21 @@ export default function Navbar() {
           direction={"row"}
           spacing={6}
         >
-          <Button
+          <IconButton
             as={"a"}
             display={{ base: "inline-flex", md: "inline-flex" }}
             fontSize={"sm"}
             fontWeight={600}
             href={"#"}
+            icon={<IoExitOutline />}
             bg={"#5a04dc"}
             color={"white"}
             _hover={{
-              bg: "#5a04dc",
+              bg: "#fff",
+              color: "#000",
+              border: "1px solid #4D44B5",
             }}
-          >
-            {buttonText}
-          </Button>
+          />
         </Stack>
       </Flex>
 

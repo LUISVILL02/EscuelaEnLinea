@@ -1,53 +1,62 @@
 import {
-  Box,
+  Button,
   Flex,
+  FormControl,
+  FormLabel,
   Heading,
   Input,
+  Link,
+  Stack,
   Image,
-  Button,
-  Text,
 } from "@chakra-ui/react";
 
-const Auth = () => {
+export default function Auth() {
   return (
-    <Flex minHeight="100vh" align="center" justify="center" bg="gray.100">
-      <Box
-        bg="white"
-        p={8}
-        mx={{ base: 6, md: 0 }}
-        borderRadius={8}
-        boxShadow="lg"
-        display={{ base: "block", md: "flex" }}
-        alignItems="center"
-      >
-        {/* Formulario de inicio de sesión */}
-        <Box mb={{ base: 6, md: 0 }}>
-          <Heading size="xl" mb={6}>
-            Iniciar Sesión
-          </Heading>
-          <Box mr={{ base: 0, md: 10 }}>
-            <Input mb={4} placeholder="Correo electrónico" />
-            <Input mb={6} placeholder="Contraseña" type="password" />
-            <Button colorScheme="blue" mb={4}>
-              Iniciar Sesión
+    <Stack minH={"80vh"} direction={{ base: "column", md: "row" }}>
+      <Flex p={8} flex={1} align={"center"} justify={"center"}>
+        <Stack spacing={4} w={"full"} maxW={"md"}>
+          <Heading fontSize={"2xl"}>Bienvenido de vuelta!</Heading>
+          <FormControl id="email">
+            <FormLabel>Correo Electronico</FormLabel>
+            <Input placeholder="luis@gmail.com" />
+          </FormControl>
+          <FormControl id="password">
+            <FormLabel>Contraseña</FormLabel>
+            <Input placeholder="****" type="password" />
+          </FormControl>
+          <Stack spacing={6}>
+            <Stack
+              direction={{ base: "column", sm: "row" }}
+              align={"start"}
+              justify={"space-between"}
+            >
+              <Link color={"#4D44B5"}>Recuperar contraseña</Link>
+            </Stack>
+            <Button
+              bg={"#4D44B5"}
+              color={"#fff"}
+              variant={"solid"}
+              _hover={{
+                bg: "#fff",
+                color: "#4D44B5",
+                border: "1px solid #4D44B5",
+              }}
+            >
+              Iniciar sesión
             </Button>
-            <Text fontSize="sm">¿Olvidaste tu contraseña?</Text>
-          </Box>
-        </Box>
-
-        {/* Imagen */}
-        <Box display={{ base: "none", md: "block" }}>
-          <Image
-            src="https://images.pexels.com/photos/2675061/pexels-photo-2675061.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt="Imagen"
-            boxSize="300px"
-            objectFit="cover"
-            borderRadius={8}
-          />
-        </Box>
-      </Box>
-    </Flex>
+          </Stack>
+        </Stack>
+      </Flex>
+      <Flex flex={1}>
+        <Image
+          display={{ base: "none", md: "block" }}
+          alt={"Login Image"}
+          objectFit={"cover"}
+          src={
+            "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80"
+          }
+        />
+      </Flex>
+    </Stack>
   );
-};
-
-export default Auth;
+}
