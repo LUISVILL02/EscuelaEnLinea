@@ -26,7 +26,7 @@ const SocialButton = ({ href, icon }) => {
       justifyContent={"center"}
       transition={"background 0.3s ease"}
       _hover={{
-        bg: "#5a04dc",
+        bg: "primary.400",
         color: "white",
       }}
     />
@@ -37,7 +37,7 @@ export default function Footer() {
   return (
     <Box
       bg={"white"}
-      color={"black"}
+      color={"gray.700"}
       h={{ xl: "max-content" }}
       borderTop={1}
       borderStyle={"solid"}

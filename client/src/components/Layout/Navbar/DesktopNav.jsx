@@ -11,10 +11,10 @@ const DesktopNav = ({ navItems }) => {
             key={navItem.label}
             to={navItem.href}
             style={({ isActive }) => ({
-              color: isActive ? "#5a04dc" : "inherit",
+              color: isActive ? "#5A189A" : "inherit",
             })}
           >
-            <Text fontWeight={500} _hover={{ color: "#5a04dc" }}>
+            <Text fontWeight={500} _hover={{ color: "primary.400" }}>
               {navItem.label}
             </Text>
           </NavLink>

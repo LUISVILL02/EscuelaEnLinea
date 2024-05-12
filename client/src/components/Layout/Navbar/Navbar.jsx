@@ -4,7 +4,6 @@ import {
   IconButton,
   Stack,
   Collapse,
-  useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
@@ -39,14 +38,14 @@ export default function Navbar() {
   return (
     <Box>
       <Flex
-        bg={useColorModeValue("white", "gray.800")}
-        color={useColorModeValue("gray.600", "white")}
+        bg={"white"}
         minH={"60px"}
         py={{ base: 2 }}
         px={{ base: 5 }}
+        color={"gray.700"}
         borderBottom={1}
         borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.200", "gray.900")}
+        borderColor="gray.200"
         align={"center"}
       >
         <Flex
@@ -89,15 +88,13 @@ export default function Navbar() {
           <IconButton
             as={"a"}
             display={{ base: "inline-flex", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
             href={"#"}
             icon={<IoExitOutline />}
-            bg={"#5a04dc"}
+            bg={"primary.400"}
             color={"white"}
             _hover={{
-              bg: "#fff",
-              color: "#000",
+              bg: "white",
+              color: "black",
               border: "1px solid #4D44B5",
             }}
           />
