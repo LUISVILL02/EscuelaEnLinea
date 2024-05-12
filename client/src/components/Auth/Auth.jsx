@@ -12,17 +12,29 @@ import {
 
 export default function Auth() {
   return (
-    <Stack minH={"80vh"} direction={{ base: "column", md: "row" }}>
+    <Stack
+      minH={"80vh"}
+      direction={{ base: "column", md: "row" }}
+      color={"gray.700"}
+    >
       <Flex p={8} flex={1} align={"center"} justify={"center"}>
         <Stack spacing={4} w={"full"} maxW={"md"}>
           <Heading fontSize={"2xl"}>Bienvenido de vuelta!</Heading>
           <FormControl id="email">
             <FormLabel>Correo Electronico</FormLabel>
-            <Input placeholder="luis@gmail.com" />
+            <Input
+              placeholder="luis@gmail.com"
+              type="email"
+              focusBorderColor="primary.400"
+            />
           </FormControl>
           <FormControl id="password">
             <FormLabel>Contraseña</FormLabel>
-            <Input placeholder="****" type="password" />
+            <Input
+              placeholder="****"
+              type="password"
+              focusBorderColor="primary.400"
+            />
           </FormControl>
           <Stack spacing={6}>
             <Stack
@@ -30,15 +42,15 @@ export default function Auth() {
               align={"start"}
               justify={"space-between"}
             >
-              <Link color={"#4D44B5"}>Recuperar contraseña</Link>
+              <Link color={"primary.400"}>Recuperar contraseña</Link>
             </Stack>
             <Button
-              bg={"#4D44B5"}
+              bg={"primary.400"}
               color={"#fff"}
               variant={"solid"}
               _hover={{
                 bg: "#fff",
-                color: "#4D44B5",
+                color: "primary.400",
                 border: "1px solid #4D44B5",
               }}
             >
