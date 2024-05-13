@@ -1,5 +1,6 @@
 package com.arquitecturasoftware.apiescuelaenlinea.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,6 +19,7 @@ public class Observacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idObservacion;
+    @JsonFormat(pattern = "dd/MM/yyyy",timezone = "GMT-5")
     private LocalDate fecha;
     private String descripcion;
 

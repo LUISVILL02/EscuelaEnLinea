@@ -4,13 +4,16 @@ package com.arquitecturasoftware.apiescuelaenlinea.model.entities;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+
 @Entity
 @Table(name = "acudientes")
 @Data
+@EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @AttributeOverride(name = "idUser", column = @Column(name = "id_acudiente"))
