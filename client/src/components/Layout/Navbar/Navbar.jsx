@@ -7,33 +7,42 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { IoExitOutline } from "react-icons/io5";
 
 import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
 import logo from "../../../assets/icons/logo.png";
+import { useUserStore } from "../../../store";
+import { itemsNavbarData, theme } from "../../../config";
+import AvatarDropdown from "./AvatarDropdown";
+import { FaSchoolFlag } from "react-icons/fa6";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
 
-  const NAV_ITEMS = [
-    {
-      label: "Panel",
-      href: "/app",
-    },
-    {
-      label: "Asistencias",
-      href: "/assistance",
-    },
-    {
-      label: "Observaciones",
-      href: "/Remarks",
-    },
-    {
-      label: "Mensajes",
-      href: "/sign-in",
-    },
-  ];
+  const rolUser = useUserStore((state) => state.rol);
+  const isActive = useUserStore((state) => state.isActive);
+
+  if (!isActive()) {
+    return (
+      <Box>
+        <Flex
+          bg={"white"}
+          minH={"60px"}
+          py={{ base: 2 }}
+          px={{ base: 5 }}
+          color={"gray.700"}
+          borderBottom={1}
+          borderStyle={"solid"}
+          borderColor="gray.200"
+          align={"center"}
+        >
+          <Box display={{ base: "center", md: "block" }} mr={5}>
+            <img src={logo} alt="logo" width={150} />
+          </Box>
+        </Flex>
+      </Box>
+    );
+  }
 
   return (
     <Box>
@@ -75,34 +84,37 @@ export default function Navbar() {
             <img src={logo} alt="logo" width={150} />
           </Box>
           <Flex display={{ base: "none", md: "flex" }} ml={5}>
-            <DesktopNav navItems={NAV_ITEMS} />
+            <DesktopNav navItems={itemsNavbarData[rolUser]} />
           </Flex>
         </Flex>
 
+        <Box
+          display={{ base: "none", md: "flex" }}
+          color={"gray.700"}
+          fontWeight={500}
+        >
+          <FaSchoolFlag color={theme.colors.primary[400]} />
+        </Box>
+        <Box
+          display={{ base: "none", md: "flex" }}
+          pr={5}
+          pl={2}
+          color={"gray.700"}
+          fontWeight={500}
+        >
+          IE Virginia Gomez
+        </Box>
         <Stack
           flex={{ base: 1, md: 0 }}
           justify={"flex-end"}
           direction={"row"}
           spacing={6}
         >
-          <IconButton
-            as={"a"}
-            display={{ base: "inline-flex", md: "inline-flex" }}
-            href={"#"}
-            icon={<IoExitOutline />}
-            bg={"primary.400"}
-            color={"white"}
-            _hover={{
-              bg: "white",
-              color: "black",
-              border: "1px solid #4D44B5",
-            }}
-          />
+          <AvatarDropdown />
         </Stack>
       </Flex>
-
       <Collapse in={isOpen} animateOpacity>
-        <MobileNav navItems={NAV_ITEMS} />
+        <MobileNav navItems={itemsNavbarData[rolUser]} />
       </Collapse>
     </Box>
   );

@@ -68,7 +68,6 @@ export default function Footer() {
 }
 
 SocialButton.propTypes = {
-  children: PropTypes.node.isRequired,
   href: PropTypes.string.isRequired,
   icon: PropTypes.node.isRequired,
 };
