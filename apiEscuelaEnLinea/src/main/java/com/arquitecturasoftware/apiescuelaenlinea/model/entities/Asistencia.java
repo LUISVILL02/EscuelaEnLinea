@@ -21,7 +21,6 @@ public class Asistencia {
     private LocalDate fecha;
 
     //relationship
-    //id_estado_asisten
 
     //alumno
     @ManyToOne
