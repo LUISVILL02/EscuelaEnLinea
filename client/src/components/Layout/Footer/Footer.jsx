@@ -6,9 +6,8 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import logo from "../../../assets/icons/logo.png";
+import logo from "@assets/icons/logo.png";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-
 import PropTypes from "prop-types";
 
 const SocialButton = ({ href, icon }) => {
