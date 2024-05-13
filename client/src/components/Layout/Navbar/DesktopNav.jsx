@@ -1,4 +1,5 @@
 import { Stack, Text } from "@chakra-ui/react";
+import { theme } from "../../../config";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 
@@ -11,7 +12,7 @@ const DesktopNav = ({ navItems }) => {
             key={navItem.label}
             to={navItem.href}
             style={({ isActive }) => ({
-              color: isActive ? "#5A189A" : "inherit",
+              color: isActive ? theme.colors.primary[400] : "inherit",
             })}
           >
             <Text fontWeight={500} _hover={{ color: "primary.400" }}>
