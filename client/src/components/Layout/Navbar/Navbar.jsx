@@ -14,7 +14,7 @@ import logo from "../../../assets/icons/logo.png";
 import { useUserStore } from "../../../store";
 import { itemsNavbarData, theme } from "../../../config";
 import AvatarDropdown from "./AvatarDropdown";
-import { FaSchool } from "react-icons/fa";
+import { FaSchoolFlag } from "react-icons/fa6";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -93,7 +93,7 @@ export default function Navbar() {
           color={"gray.700"}
           fontWeight={500}
         >
-          <FaSchool color={theme.colors.primary[400]} />
+          <FaSchoolFlag color={theme.colors.primary[400]} />
         </Box>
         <Box
           display={{ base: "none", md: "flex" }}
