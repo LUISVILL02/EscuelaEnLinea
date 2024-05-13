@@ -1,5 +1,6 @@
 package com.arquitecturasoftware.apiescuelaenlinea.model.mappers;
 
+import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.ProfesorEDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.ProfesorGDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Profesor;
 import org.mapstruct.InheritInverseConfiguration;
@@ -10,4 +11,5 @@ public interface ProfesorMapper {
     ProfesorGDto toDto(Profesor profesor);
     @InheritInverseConfiguration
     Profesor toProfesor(ProfesorGDto profesorDto);
+    ProfesorEDto toEDto(Profesor profesor);
 }

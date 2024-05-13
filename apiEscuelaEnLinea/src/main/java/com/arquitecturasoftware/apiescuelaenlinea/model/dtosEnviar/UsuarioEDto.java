@@ -9,7 +9,7 @@ public class UsuarioEDto {
     private Long id;
     private String nombre;
     private String apellido;
+    private String identificador;
     private String correo;
     private String telefono;
-    private String idenficador;
 }

@@ -1,5 +1,6 @@
 package com.arquitecturasoftware.apiescuelaenlinea.model.mappers;
 
+import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.ObservacionEDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.ObservacionGDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Observacion;
 import org.mapstruct.*;
@@ -14,4 +15,11 @@ public interface ObservacionMapper {
     ObservacionGDto toDto(Observacion observacion);
     @InheritInverseConfiguration
     Observacion toObservacion(ObservacionGDto observacionDto);
+
+    @Mappings({
+            @Mapping(source = "profesor.nombre", target = "nombreProfesor"),
+            @Mapping(source = "alumno.nombre", target = "nombreAlumno"),
+            @Mapping(source = "alumno.apellido", target = "apellidoAlumno")
+    })
+    ObservacionEDto toEDto(Observacion observacion);
 }

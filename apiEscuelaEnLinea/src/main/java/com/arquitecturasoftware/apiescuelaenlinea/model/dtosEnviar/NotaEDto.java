@@ -16,5 +16,6 @@ public class NotaEDto {
     private String nombreActividad;
     private Float nota;
     private String nombreAlumno;
+    private String apellidoAlumno;
     private Long idAsignacion;
 }

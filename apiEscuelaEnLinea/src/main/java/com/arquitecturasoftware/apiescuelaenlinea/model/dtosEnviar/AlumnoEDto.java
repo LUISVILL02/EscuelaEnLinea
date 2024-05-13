@@ -19,4 +19,5 @@ public class AlumnoEDto {
     private Long identificación;
     private String fotografia;
     private String NombreAcudiente;
+    private String nombreCurso;
 }
