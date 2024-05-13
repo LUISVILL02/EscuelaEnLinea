@@ -88,7 +88,13 @@ export default function Navbar() {
           </Flex>
         </Flex>
 
-        <FaSchool color={theme.colors.primary[400]} />
+        <Box
+          display={{ base: "none", md: "flex" }}
+          color={"gray.700"}
+          fontWeight={500}
+        >
+          <FaSchool color={theme.colors.primary[400]} />
+        </Box>
         <Box
           display={{ base: "none", md: "flex" }}
           pr={5}
