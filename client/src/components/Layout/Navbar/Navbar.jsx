@@ -10,9 +10,9 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
 import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
-import logo from "../../../assets/icons/logo.png";
-import { useUserStore } from "../../../store";
-import { itemsNavbarData, theme } from "../../../config";
+import logo from "@assets/icons/logo.png";
+import { useUserStore } from "@store";
+import { itemsNavbarData, theme } from "@config";
 import AvatarDropdown from "./AvatarDropdown";
 import { FaSchoolFlag } from "react-icons/fa6";
 

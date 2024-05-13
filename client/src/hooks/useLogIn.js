@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
-import { useUserStore, users } from "../store";
-import { routes } from "../config";
+import { useUserStore, users } from "@store";
+import { routes } from "@config";
 import { useNavigate } from "react-router-dom";
 
 const useLogIn = () => {

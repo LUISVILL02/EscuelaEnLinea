@@ -14,7 +14,7 @@ import {
   AlertDescription,
 } from "@chakra-ui/react";
 
-import { useLogIn } from "../../hooks";
+import { useLogIn } from "@hooks";
 
 export default function Auth() {
   const {
