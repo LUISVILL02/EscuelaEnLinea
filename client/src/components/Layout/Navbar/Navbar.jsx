@@ -12,9 +12,10 @@ import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
 import logo from "@assets/icons/logo.png";
 import { useUserStore } from "@store";
-import { itemsNavbarData, theme } from "@config";
+import { itemsNavbarData, theme, routes } from "@config";
 import AvatarDropdown from "./AvatarDropdown";
 import { FaSchoolFlag } from "react-icons/fa6";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -36,7 +37,12 @@ export default function Navbar() {
           borderColor="gray.200"
           align={"center"}
         >
-          <Box display={{ base: "center", md: "block" }} mr={5}>
+          <Box
+            display={{ base: "center", md: "block" }}
+            mr={5}
+            as={NavLink}
+            to={routes.home}
+          >
             <img src={logo} alt="logo" width={150} />
           </Box>
         </Flex>
@@ -80,7 +86,12 @@ export default function Navbar() {
           justify={{ base: "center", md: "start" }}
           alignItems="center"
         >
-          <Box display={{ base: "center", md: "block" }} mr={5}>
+          <Box
+            display={{ base: "center", md: "block" }}
+            mr={5}
+            as={NavLink}
+            to={routes.home}
+          >
             <img src={logo} alt="logo" width={150} />
           </Box>
           <Flex display={{ base: "none", md: "flex" }} ml={5}>
@@ -102,7 +113,7 @@ export default function Navbar() {
           color={"gray.700"}
           fontWeight={500}
         >
-          IE Virginia Gomez
+          Universidad del Magdalena
         </Box>
         <Stack
           flex={{ base: 1, md: 0 }}
