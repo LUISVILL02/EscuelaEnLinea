@@ -8,5 +8,6 @@ import lombok.*;
 public class AsignacionEDto {
     private Long idAsignacion;
     private String nombreProfesor;
+    private String apellidoProfesor;
     private String nombreAsignatura;
 }

@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Builder
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario {
     @Id

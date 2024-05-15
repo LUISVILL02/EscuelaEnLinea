@@ -8,11 +8,14 @@ import org.mapstruct.*;
 @Mapper
 public interface CursoMapper {
 
-    @Mapping(source = "profesor.idProfesor", target = "idProfesor")
+    @Mapping(source = "profesor.idUser", target = "idProfesor")
     CursoGDto toDto(Curso curso);
     @InheritInverseConfiguration
     Curso toCurso(CursoGDto cursoDto);
 
-    @Mapping(source = "profesor.nombre", target = "nombreProfesor")
+    @Mappings({
+            @Mapping(source = "profesor.nombre", target = "nombreProfesor"),
+            @Mapping(source = "profesor.apellido", target = "apellidoProfesor")
+    })
     CursoEDto toEDto(Curso curso);
 }

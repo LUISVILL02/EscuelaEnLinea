@@ -12,8 +12,8 @@ public interface EstadoAsitenciaMapper {
     EstadoAsistencia toEstadoAsistencia(EstadoAsistenciaGDto estadoAsitenciaDto);
 
     @Mappings({
-            @Mapping(source = "estadoAsitencia.idEstadoAsistencia", target = "idEA"),
-            @Mapping(source = "estadoAsistencia.nombre", target = "nombre")
+            @Mapping(source = "estadoAsistencia.idEstadoAsistencia", target = "idEA"),
+            @Mapping(source = "estadoAsistencia.estado", target = "estado")
     })
     EstadoAsistenciaEDto toEDto(EstadoAsistencia estadoAsistencia);
 }
