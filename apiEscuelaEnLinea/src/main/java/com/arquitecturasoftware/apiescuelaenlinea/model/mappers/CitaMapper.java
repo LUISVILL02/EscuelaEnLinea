@@ -9,8 +9,8 @@ import org.mapstruct.*;
 public interface CitaMapper {
 
     @Mappings({
-            @Mapping(source = "profesor.idProfesor", target = "idProfesor"),
-            @Mapping(source = "acudiente.idAcudiente", target = "idAcudiente"),
+            @Mapping(source = "profesor.idUser", target = "idProfesor"),
+            @Mapping(source = "acudiente.idUser", target = "idAcudiente"),
             @Mapping(source = "estadoCita.idEstadoCita", target = "idEstadoCita"),
             })
     CitaGDto toDto(Cita cita);
@@ -18,9 +18,11 @@ public interface CitaMapper {
     Cita toCita(CitaGDto citaDto);
 
     @Mappings({
-            @Mapping(source = "alumno.nombre", target = "nombreAlumno"),
-            @Mapping(source = "alumno.apellido", target = "apellidoAlumno"),
-            @Mapping(source = "estadoAsitencia.nombre", target = "nombreEstadoAsistencia")
+            @Mapping(source = "profesor.nombre", target = "nombreProfesor"),
+            @Mapping(source = "profesor.apellido", target = "apellidoProfesor"),
+            @Mapping(source = "acudiente.nombre", target = "nombreAcudiente"),
+            @Mapping(source = "acudiente.apellido", target = "apellidoAcudiente"),
+            @Mapping(source = "estadoCita.nombre", target = "estadoCita")
     })
     CitaEDto toEDto(Cita cita);
 }

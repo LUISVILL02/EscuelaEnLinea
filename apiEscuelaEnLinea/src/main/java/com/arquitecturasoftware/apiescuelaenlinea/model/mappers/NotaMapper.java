@@ -17,8 +17,8 @@ public interface NotaMapper {
     Nota toNota(NotaGDto notaDto);
 
     @Mappings({
-            @Mapping(source = "alumno.nombre", target = "nombre"),
-            @Mapping(source = "alumno.apellido", target = "apellido"),
+            @Mapping(source = "alumno.nombre", target = "nombreAlumno"),
+            @Mapping(source = "alumno.apellido", target = "apellidoAlumno"),
             @Mapping(source = "asignacion.idAsignacion", target = "idAsignacion")
     })
     NotaEDto toEDto(Nota nota);

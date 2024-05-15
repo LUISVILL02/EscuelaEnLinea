@@ -12,5 +12,5 @@ public class AsistenciaEDto {
     private LocalDate fecha;
     private String nombreAlumno;
     private String apellidoAlumno;
-    private String nombreEstadoAsistencia;
+    private String estado;
 }

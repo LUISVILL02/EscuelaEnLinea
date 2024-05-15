@@ -13,6 +13,8 @@ public class CitaEDto {
     private LocalDateTime fechaCreacion;
     private LocalDateTime fechaCita;
     private String nombreProfesor;
+    private String apellidoProfesor;
     private String nombreAcudiente;
+    private String apellidoAcudiente;
     private String estadoCita;
 }
