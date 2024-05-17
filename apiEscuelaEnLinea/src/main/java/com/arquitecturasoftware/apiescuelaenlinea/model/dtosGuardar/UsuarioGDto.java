@@ -9,7 +9,6 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsuarioGDto {
-    private Long idUser;
     private String nombre;
     private String apellido;
     private String identificacion;
