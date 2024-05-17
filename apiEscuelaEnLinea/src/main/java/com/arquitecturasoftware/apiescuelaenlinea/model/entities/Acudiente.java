@@ -4,6 +4,7 @@ package com.arquitecturasoftware.apiescuelaenlinea.model.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -33,5 +34,11 @@ public class Acudiente extends Usuario{
     }
 
     public Acudiente() {
+    }
+
+    @Builder(builderMethodName = "acudienteBuilder")
+    public Acudiente(Long idUser, String nombre, String apellido, String identificacion, String correo, String telefono, String contraseña, Set<Role> roles, String direccion) {
+        super(idUser, nombre, apellido, identificacion, correo, telefono, contraseña, roles);
+        this.direccion = direccion;
     }
 }
