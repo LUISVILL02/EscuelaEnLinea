@@ -2,16 +2,14 @@ package com.arquitecturasoftware.apiescuelaenlinea.model.entities;
 
 import com.arquitecturasoftware.apiescuelaenlinea.model.enums.ERole;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity

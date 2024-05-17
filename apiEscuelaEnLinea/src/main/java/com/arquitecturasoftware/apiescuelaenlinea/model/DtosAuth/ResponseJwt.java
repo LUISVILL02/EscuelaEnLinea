@@ -1,4 +1,4 @@
-package com.arquitecturasoftware.apiescuelaenlinea.model.Dtos;
+package com.arquitecturasoftware.apiescuelaenlinea.model.DtosAuth;
 
 import lombok.Data;
 

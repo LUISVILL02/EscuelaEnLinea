@@ -5,7 +5,7 @@ import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.AcudienteGDt
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Acudiente;
 import org.mapstruct.*;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface AcudienteMapper {
     AcudienteGDto toDto(Acudiente acudiente);
     @InheritInverseConfiguration

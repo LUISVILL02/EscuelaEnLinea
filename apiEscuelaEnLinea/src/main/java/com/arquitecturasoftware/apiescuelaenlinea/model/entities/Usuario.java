@@ -35,7 +35,7 @@ public class Usuario implements UserDetails {
     private String identificacion;
     @Column(unique = true)
     private String correo;
-    private Long telefono;
+    private String telefono;
     private String contraseña;
 
     //relationship
@@ -77,5 +77,14 @@ public class Usuario implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public Usuario(String nombre, String apellido, String identificacion, String correo, String telefono, String contraseña) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.identificacion = identificacion;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.contraseña = contraseña;
     }
 }
