@@ -5,7 +5,7 @@ import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.CursoGDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Curso;
 import org.mapstruct.*;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CursoMapper {
 
     @Mapping(source = "profesor.idUser", target = "idProfesor")
