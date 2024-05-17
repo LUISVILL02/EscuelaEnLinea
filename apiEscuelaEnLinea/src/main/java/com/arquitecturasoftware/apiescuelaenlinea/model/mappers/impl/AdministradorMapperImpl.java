@@ -6,9 +6,11 @@ import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Administrador;
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Role;
 import com.arquitecturasoftware.apiescuelaenlinea.model.enums.ERole;
 import com.arquitecturasoftware.apiescuelaenlinea.model.mappers.AdministradorMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
+@Component
 public class AdministradorMapperImpl implements AdministradorMapper {
     @Override
     public AdministradorGDto toDto(Administrador administrador) {
@@ -19,6 +21,7 @@ public class AdministradorMapperImpl implements AdministradorMapper {
         administradorGDto.setIdentificacion(administrador.getIdentificacion());
         administradorGDto.setContraseña(administrador.getContraseña());
         administradorGDto.setTelefono(administrador.getTelefono());
+        administradorGDto.setFechaNacimiento(administrador.getFechaNacimiento());
         administradorGDto.setRoles(administrador.getRoles().stream().map(role -> role.getName().name()).collect(Collectors.toSet()));
         return administradorGDto;
     }
@@ -32,6 +35,7 @@ public class AdministradorMapperImpl implements AdministradorMapper {
         administrador.setIdentificacion(administradorDto.getIdentificacion());
         administrador.setContraseña(administradorDto.getContraseña());
         administrador.setTelefono(administradorDto.getTelefono());
+        administrador.setFechaNacimiento(administradorDto.getFechaNacimiento());
         administrador.setRoles(administradorDto.getRoles().stream().map(role -> {
             Role r = new Role();
             r.setName(Enum.valueOf(ERole.class, role));
@@ -49,6 +53,7 @@ public class AdministradorMapperImpl implements AdministradorMapper {
         administradorEDto.setCorreo(administrador.getCorreo());
         administradorEDto.setIdentificador(administrador.getIdentificacion());
         administradorEDto.setTelefono(administrador.getTelefono());
+        administradorEDto.setFechaNacimiento(administrador.getFechaNacimiento());
         administradorEDto.setRoles(administrador.getRoles().stream().map(role -> role.getName().name()).collect(Collectors.toSet()));
         return null;
     }
