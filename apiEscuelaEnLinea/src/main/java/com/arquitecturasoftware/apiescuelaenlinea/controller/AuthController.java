@@ -8,6 +8,7 @@ import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.ProfesorGDto
 import com.arquitecturasoftware.apiescuelaenlinea.service.AuthService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,12 +19,16 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<ResponseJwt> login(@RequestBody Login login) {
-        return ResponseEntity.ok(authService.login(login.getCorreo(), login.getContraseña()));
+        return ResponseEntity.ok(authService.login(login));
     }
 
     @PostMapping("/register/acudiente")
     public ResponseEntity<String> registerAcudiente(@RequestBody AcudienteGDto acudienteGDto) {
-        return ResponseEntity.ok(authService.registerAcudiente(acudienteGDto));
+        try {
+            return ResponseEntity.ok(authService.registerAcudiente(acudienteGDto));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @PostMapping("/register/profesor")
@@ -34,5 +39,11 @@ public class AuthController {
     @PostMapping("/register/administrador")
     public ResponseEntity<String> registerAdministrador(@RequestBody AdministradorGDto administradorGDto) {
         return ResponseEntity.ok(authService.registerAdministrador(administradorGDto));
+    }
+
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/test")
+    public ResponseEntity<String> test() {
+        return ResponseEntity.ok("Prueba de autorización con token válido");
     }
 }
