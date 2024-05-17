@@ -6,9 +6,11 @@ import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Profesor;
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Role;
 import com.arquitecturasoftware.apiescuelaenlinea.model.enums.ERole;
 import com.arquitecturasoftware.apiescuelaenlinea.model.mappers.ProfesorMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
+@Component
 public class ProfesorMapperImpl implements ProfesorMapper {
     @Override
     public ProfesorGDto toDto(Profesor profesor) {
@@ -20,6 +22,7 @@ public class ProfesorMapperImpl implements ProfesorMapper {
         profesorDto.setContraseña(profesor.getContraseña());
         profesorDto.setTelefono(profesor.getTelefono());
         profesorDto.setDireccion(profesor.getDireccion());
+        profesorDto.setFechaNacimiento(profesor.getFechaNacimiento());
         profesorDto.setRoles(profesor.getRoles().stream().map(role -> role.getName().name()).collect(Collectors.toSet()));
         return profesorDto;
     }
@@ -34,6 +37,7 @@ public class ProfesorMapperImpl implements ProfesorMapper {
         profesor.setContraseña(profesorDto.getContraseña());
         profesor.setTelefono(profesorDto.getTelefono());
         profesor.setDireccion(profesorDto.getDireccion());
+        profesor.setFechaNacimiento(profesorDto.getFechaNacimiento());
         profesor.setRoles(profesorDto.getRoles().stream().map(role -> {
             Role r = new Role();
             r.setName(Enum.valueOf(ERole.class, role));
@@ -52,6 +56,7 @@ public class ProfesorMapperImpl implements ProfesorMapper {
         profesorDto.setIdentificador(profesor.getIdentificacion());
         profesorDto.setTelefono(profesor.getTelefono());
         profesorDto.setDireccion(profesor.getDireccion());
+        profesorDto.setFechaNacimiento(profesor.getFechaNacimiento());
         profesorDto.setRoles(profesor.getRoles().stream().map(role -> role.getName().name()).collect(Collectors.toSet()));
         return profesorDto;
     }

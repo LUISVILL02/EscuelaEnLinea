@@ -6,9 +6,11 @@ import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Acudiente;
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Role;
 import com.arquitecturasoftware.apiescuelaenlinea.model.enums.ERole;
 import com.arquitecturasoftware.apiescuelaenlinea.model.mappers.AcudienteMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
+@Component
 public class AcudienteMapperImpl implements AcudienteMapper {
     @Override
     public AcudienteGDto toDto(Acudiente acudiente) {
