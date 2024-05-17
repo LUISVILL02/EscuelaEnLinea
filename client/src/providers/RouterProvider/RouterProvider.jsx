@@ -1,5 +1,5 @@
-import { Auth, LandingPage, Layout } from "../../components";
-import { routes } from "../../config";
+import { Auth, LandingPage, Layout } from "@components";
+import { routes } from "@config";
 import {
   createBrowserRouter,
   RouterProvider as ReactRouterProvider,

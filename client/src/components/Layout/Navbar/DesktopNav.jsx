@@ -1,5 +1,5 @@
 import { Stack, Text } from "@chakra-ui/react";
-import { theme } from "../../../config";
+import { theme } from "@config";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 

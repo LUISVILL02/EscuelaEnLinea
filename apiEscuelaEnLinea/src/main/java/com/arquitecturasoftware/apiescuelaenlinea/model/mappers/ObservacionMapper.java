@@ -9,7 +9,7 @@ import org.mapstruct.*;
 public interface ObservacionMapper {
 
     @Mappings({
-        @Mapping(source = "profesor.idProfesor", target = "idProfesor"),
+        @Mapping(source = "profesor.idUser", target = "idProfesor"),
         @Mapping(source = "alumno.idAlumno", target = "idAlumno")
     })
     ObservacionGDto toDto(Observacion observacion);
@@ -18,6 +18,7 @@ public interface ObservacionMapper {
 
     @Mappings({
             @Mapping(source = "profesor.nombre", target = "nombreProfesor"),
+            @Mapping(source = "profesor.apellido", target = "apellidoProfesor"),
             @Mapping(source = "alumno.nombre", target = "nombreAlumno"),
             @Mapping(source = "alumno.apellido", target = "apellidoAlumno")
     })

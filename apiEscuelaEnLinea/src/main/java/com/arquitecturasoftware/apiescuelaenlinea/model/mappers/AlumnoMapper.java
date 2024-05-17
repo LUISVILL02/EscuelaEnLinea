@@ -9,7 +9,7 @@ import org.mapstruct.*;
 public interface AlumnoMapper {
 
     @Mappings({
-            @Mapping(source = "acudiente.idAcudiente", target = "idAcudiente"),
+            @Mapping(source = "acudiente.idUser", target = "idAcudiente"),
             @Mapping(source = "curso.idCurso", target = "idCurso"),
     })
     AlumnoGDto toDto(Alumno alumno);
@@ -18,6 +18,7 @@ public interface AlumnoMapper {
 
     @Mappings({
             @Mapping(source = "acudiente.nombre", target = "nombreAcudiente"),
+            @Mapping(source = "acudiente.apellido", target = "apellidoAcudiente"),
             @Mapping(source = "curso.nombre", target = "nombreCurso")
     })
     AlumnoEDto toEDto(Alumno alumno);

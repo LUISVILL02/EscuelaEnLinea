@@ -9,7 +9,7 @@ import org.mapstruct.*;
 public interface AsignacionMapper {
 
     @Mappings({
-            @Mapping(source = "profesor.idProfesor", target = "idProfesor"),
+            @Mapping(source = "profesor.idUser", target = "idProfesor"),
             @Mapping(source = "asignatura.idAsignatura", target = "idAsignatura"),
            })
     AsignacionGDto toDto(Asignacion asignacion);
@@ -18,6 +18,7 @@ public interface AsignacionMapper {
 
     @Mappings({
             @Mapping(source = "profesor.nombre", target = "nombreProfesor"),
+            @Mapping(source = "profesor.apellido", target = "apellidoProfesor"),
             @Mapping(source = "asignatura.nombre", target = "nombreAsignatura")
     })
     AsignacionEDto toEDto(Asignacion asignacion);

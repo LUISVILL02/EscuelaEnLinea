@@ -19,7 +19,7 @@ public interface AsistenciaMapper {
     @Mappings({
             @Mapping(source = "alumno.nombre", target = "nombreAlumno"),
             @Mapping(source = "alumno.apellido", target = "apellidoAlumno"),
-            @Mapping(source = "estadoAsitencia.nombre", target = "nombreEstadoAsistencia")
+            @Mapping(source = "estadoAsistencia.estado", target = "estado")
     })
     AsistenciaEDto toEDto(Asistencia asistencia);
 }

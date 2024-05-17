@@ -12,6 +12,7 @@ public class ObservacionEDto {
     private LocalDate fecha;
     private String descripcion;
     private String nombreProfesor;
+    private String apellidoProfesor;
     private String nombreAlumno;
     private String apellidoAlumno;
 

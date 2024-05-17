@@ -1,9 +1,7 @@
 package com.arquitecturasoftware.apiescuelaenlinea.model.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @AttributeOverride(name = "idUser", column = @Column(name = "id_profesor"))
+@EqualsAndHashCode(callSuper = true)
 public class Profesor extends Usuario{
     private LocalDate fechaNacimiento;
     private String direccion;

@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Builder
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario implements UserDetails {
     @Id

@@ -13,10 +13,10 @@ import {
 } from "@chakra-ui/react";
 import { IoSettingsOutline, IoExitOutline } from "react-icons/io5";
 
-import { useUserStore } from "../../../store";
+import { useUserStore } from "@store";
 import { NavLink, useNavigate } from "react-router-dom";
-import { routes } from "../../../config";
-import { parseName, parseRole } from "../../../utils";
+import { routes } from "@config";
+import { parseName, parseRole } from "@utils";
 
 const AvatarDropdown = () => {
   const firtName = useUserStore((state) => state.firtName);
