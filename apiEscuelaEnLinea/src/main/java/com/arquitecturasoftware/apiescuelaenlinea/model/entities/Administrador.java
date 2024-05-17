@@ -8,6 +8,7 @@ import jakarta.persistence.Table;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "administradores")
@@ -19,4 +20,10 @@ import java.time.LocalDate;
 public class Administrador extends Usuario{
     @JsonFormat(pattern = "dd/MM/yyyy",timezone = "GMT-5")
     private LocalDate fechaNacimiento;
+
+    @Builder(builderMethodName = "administradorBuilder")
+    public Administrador(Long idUser, String nombre, String apellido, String identificacion, String correo, String telefono, String contraseña, Set<Role> roles, LocalDate fechaNacimiento) {
+        super(idUser, nombre, apellido, identificacion, correo, telefono, contraseña, roles);
+        this.fechaNacimiento = fechaNacimiento;
+    }
 }
