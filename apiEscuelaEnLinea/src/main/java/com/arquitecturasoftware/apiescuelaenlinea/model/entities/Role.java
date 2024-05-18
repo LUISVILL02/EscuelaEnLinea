@@ -20,6 +20,4 @@ public class Role {
     private Long id;
     @Enumerated(EnumType.STRING)
     private ERole name;
-    @ManyToMany(mappedBy = "roles")
-    private List<Usuario> users = new ArrayList<>();
 }

@@ -44,9 +44,10 @@ export default function Auth() {
           <FormControl id="email">
             <FormLabel>Correo Electronico</FormLabel>
             <Input
+            
               placeholder="luis@gmail.com"
               focusBorderColor="primary.400"
-              {...register("email", {
+              {...register("correo", {
                 required: "El correo es requerido",
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -61,7 +62,7 @@ export default function Auth() {
               placeholder="****"
               type="password"
               focusBorderColor="primary.400"
-              {...register("password", {
+              {...register("contraseña", {
                 required: "La contraseña es requerida",
               })}
             />
