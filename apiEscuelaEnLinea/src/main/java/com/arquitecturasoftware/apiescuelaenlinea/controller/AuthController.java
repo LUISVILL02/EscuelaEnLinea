@@ -18,8 +18,12 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/login")
-    public ResponseEntity<ResponseJwt> login(@RequestBody Login login) {
-        return ResponseEntity.ok(authService.login(login));
+    public ResponseEntity<?> login(@RequestBody Login login) {
+        try {
+            return ResponseEntity.ok(authService.login(login));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @PostMapping("/register/acudiente")
@@ -33,15 +37,23 @@ public class AuthController {
 
     @PostMapping("/register/profesor")
     public ResponseEntity<String> registerProfesor(@RequestBody ProfesorGDto profesorGDto) {
-        return ResponseEntity.ok(authService.registerProfesor(profesorGDto));
+        try {
+            return ResponseEntity.ok(authService.registerProfesor(profesorGDto));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @PostMapping("/register/administrador")
     public ResponseEntity<String> registerAdministrador(@RequestBody AdministradorGDto administradorGDto) {
-        return ResponseEntity.ok(authService.registerAdministrador(administradorGDto));
+        try {
+            return ResponseEntity.ok(authService.registerAdministrador(administradorGDto));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/test")
     public ResponseEntity<String> test() {
         return ResponseEntity.ok("Prueba de autorización con token válido");

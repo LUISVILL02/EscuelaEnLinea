@@ -71,7 +71,7 @@ public class AuthImpl implements AuthService{
                 .map(roleName -> {
             ERole eRole = ERole.valueOf(roleName);
                     return roleRepository.findByName(eRole)
-                            .orElseGet(() -> Role.builder().name(eRole).build());
+                            .orElseGet(() -> roleRepository.save(Role.builder().name(eRole).build()));
         })
         .collect(Collectors.toSet());
         Acudiente acudiente = acudienteMapper.toAcudiente(acudienteGDto);
@@ -90,7 +90,7 @@ public class AuthImpl implements AuthService{
                 .map(roleName -> {
                     ERole eRole = ERole.valueOf(roleName);
                     return roleRepository.findByName(eRole)
-                            .orElseGet(() -> Role.builder().name(eRole).build());
+                            .orElseGet(() -> roleRepository.save(Role.builder().name(eRole).build()));
                 })
                 .collect(Collectors.toSet());
         Profesor profesor = profesorMapper.toProfesor(profesorGDto);
@@ -109,7 +109,7 @@ public class AuthImpl implements AuthService{
                 .map(roleName -> {
                     ERole eRole = ERole.valueOf(roleName);
                     return roleRepository.findByName(eRole)
-                            .orElseGet(() -> Role.builder().name(eRole).build());
+                            .orElseGet(() -> roleRepository.save(Role.builder().name(eRole).build()));
                 })
                 .collect(Collectors.toSet());
         Administrador administrador = administradorMapper.toAdministrador(administradorGDto);
