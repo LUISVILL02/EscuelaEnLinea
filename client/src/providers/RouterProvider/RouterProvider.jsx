@@ -1,9 +1,10 @@
-import { Auth, LandingPage, Layout } from "@components";
+import { Auth, LandingPage, Layout, App } from "@components";
 import { routes } from "@config";
 import {
   createBrowserRouter,
   RouterProvider as ReactRouterProvider,
 } from "react-router-dom";
+import PublicRoutes from "./PublicRoutes";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,31 @@ const router = createBrowserRouter([
       },
       {
         path: routes.AUTH,
-        element: <Auth />,
+        element: (
+          <PublicRoutes>
+            <Auth />
+          </PublicRoutes>
+        ),
+      },
+      {
+        path: routes.APP,
+        element: <App />,
+      },
+      {
+        path: routes.ASSISTANCES,
+        element: <div>Assistances</div>,
+      },
+      {
+        path: routes.REMARKS,
+        element: <div>Remarks</div>,
+      },
+      {
+        path: routes.MESSAGES,
+        element: <div>Messages</div>,
+      },
+      {
+        path: routes.SETTINGS,
+        element: <div>Settings</div>,
       },
     ],
   },
