@@ -26,7 +26,6 @@
     "react/jsx-no-undef": 2,
     "semi": ["error", "always"],
     "eol-last": ["error", "always"],
-    "no-console": ["error", { "allow": ["debug", "error", "info", "warn"]}],
     "no-duplicate-imports": ["error", { "includeExports": true }],
     "no-multiple-empty-lines": ["error", { "max": 1, "maxBOF": 0, "maxEOF": 0 }],
     "prettier/prettier": [

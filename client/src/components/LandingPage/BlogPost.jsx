@@ -17,7 +17,7 @@ const BlogPost = () => {
   return (
     <Box maxW="4xl" mx={{ base: "36px", lg: "auto" }} pt={5}>
       <Flex direction="column" alignItems="flex-start" py={10}>
-        <chakra.h2 fontSize={"3xl"} fontWeight={"bold"}>
+        <chakra.h2 fontSize={"3xl"} fontWeight={"bold"} id="blog">
           Ultimas noticias
         </chakra.h2>
         <Box width="100px" height="5px" bg="primary.400" />

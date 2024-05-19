@@ -20,7 +20,7 @@ import { NavLink } from "react-router-dom";
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
 
-  const rolUser = useUserStore((state) => state.rol);
+  const rolUser = useUserStore((state) => state.roles[0]);
   const isActive = useUserStore((state) => state.isActive);
 
   if (!isActive()) {

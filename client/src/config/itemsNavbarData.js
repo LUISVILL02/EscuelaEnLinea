@@ -1,5 +1,5 @@
 export const itemsNavbarData = {
-  teacher: [
+  PROFESOR: [
     {
       label: "Panel",
       href: "/app",
@@ -17,8 +17,8 @@ export const itemsNavbarData = {
       href: "/messages",
     },
   ],
-  student: [],
-  attendant: [
+  ESTUDIANTE: [],
+  ACUDIENTE: [
     {
       label: "Panel",
       href: "/app",
@@ -28,7 +28,7 @@ export const itemsNavbarData = {
       href: "/attendees",
     },
   ],
-  admin: [
+  ADMIN: [
     {
       label: "Panel",
       href: "/app",

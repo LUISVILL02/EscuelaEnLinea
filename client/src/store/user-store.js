@@ -2,18 +2,20 @@ import { create } from "zustand";
 
 const initialState = {
   id: "",
-  firtName: "",
-  lastName: "",
-  identification: "",
+  roles: "",
+  identificacion: "",
   email: "",
-  phone: "",
-  imgUrl: "",
-  rol: "",
 };
 
 export const useUserStore = create((set, get) => ({
   ...initialState,
   isActive: () => (get().id ? true : false),
-  logIn: (user) => set({ ...user }),
-  logOut: () => set({ ...initialState }),
+  logIn: (user) => {
+    localStorage.setItem("token", JSON.stringify(user.token));
+    set({ ...user });
+  },
+  logOut: () => {
+    localStorage.removeItem("token");
+    set({ ...initialState });
+  },
 }));

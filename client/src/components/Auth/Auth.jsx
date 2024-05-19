@@ -41,10 +41,9 @@ export default function Auth() {
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <Heading fontSize={"2xl"}>Bienvenido de vuelta!</Heading>
-          <FormControl id="email">
+          <FormControl id="correo">
             <FormLabel>Correo Electronico</FormLabel>
             <Input
-            
               placeholder="luis@gmail.com"
               focusBorderColor="primary.400"
               {...register("correo", {
@@ -56,7 +55,7 @@ export default function Auth() {
               })}
             />
           </FormControl>
-          <FormControl id="password">
+          <FormControl id="contraseña">
             <FormLabel>Contraseña</FormLabel>
             <Input
               placeholder="****"
@@ -75,7 +74,7 @@ export default function Auth() {
             >
               <Link color={"primary.400"}>Recuperar contraseña</Link>
             </Stack>
-            {(errors.password || errors.email) && (
+            {(errors.contraseña || errors.correo) && (
               <Alert
                 status="error"
                 bg="danger.50"
@@ -85,7 +84,7 @@ export default function Auth() {
                 <AlertIcon />
                 <AlertTitle>Error!</AlertTitle>
                 <AlertDescription>
-                  {errors.email?.message || errors.password?.message}
+                  {errors.correo?.message || errors.contraseña?.message}
                 </AlertDescription>
               </Alert>
             )}
