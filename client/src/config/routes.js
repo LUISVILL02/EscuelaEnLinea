@@ -4,6 +4,6 @@ export default Object.freeze({
   APP: "/app",
   ASSISTANCES: "/app/assistances",
   REMARKS: "/app/remarks",
-  MESAGGES: "/app/messages",
+  MESSAGES: "/app/messages",
   SETTINGS: "/app/settings",
 });

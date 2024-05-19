@@ -17,7 +17,7 @@ const BlogPost = () => {
   return (
     <Box maxW="4xl" mx={{ base: "36px", lg: "auto" }} pt={5}>
       <Flex direction="column" alignItems="flex-start" py={10}>
-        <chakra.h2 fontSize={"3xl"} fontWeight={"bold"}>
+        <chakra.h2 fontSize={"3xl"} fontWeight={"bold"} id="blog">
           Ultimas noticias
         </chakra.h2>
         <Box width="100px" height="5px" bg="primary.400" />
@@ -45,26 +45,33 @@ const CardBlog = ({ imgUrl, title, text, cat }) => {
       borderWidth={1}
       boxShadow={"none"}
       rounded={"md"}
+      display="flex"
+      flexDirection="column"
+      justifyContent="space-between"
     >
-      <Box bg={"gray.100"} mb={6}>
-        <Image src={imgUrl} />
+      <Box>
+        <Box bg={"gray.100"} mb={6}>
+          <Image src={imgUrl} />
+        </Box>
+        <Stack px={5} pb={5}>
+          <Heading color={"gray.700"} fontSize={"2xl"} fontFamily={"body"}>
+            {title}
+          </Heading>
+          <Text
+            textTransform={"uppercase"}
+            color={"primary.400"}
+            fontWeight={800}
+            fontSize={"sm"}
+            letterSpacing={1.1}
+          >
+            {cat}
+          </Text>
+          <Text color={"gray.500"}>
+            {text.split(" ").slice(0, 40).join(" ")}...
+          </Text>
+        </Stack>
       </Box>
-      <Stack px={5} pb={5}>
-        <Heading color={"gray.700"} fontSize={"2xl"} fontFamily={"body"}>
-          {title}
-        </Heading>
-        <Text
-          textTransform={"uppercase"}
-          color={"primary.400"}
-          fontWeight={800}
-          fontSize={"sm"}
-          letterSpacing={1.1}
-        >
-          {cat}
-        </Text>
-        <Text color={"gray.500"}>
-          {text.split(" ").slice(0, 40).join(" ")}...
-        </Text>
+      <Box px={5} pb={5}>
         <Button
           mt={5}
           bg={"primary.500"}
@@ -79,7 +86,7 @@ const CardBlog = ({ imgUrl, title, text, cat }) => {
         >
           Ver mas
         </Button>
-      </Stack>
+      </Box>
     </Box>
   );
 };

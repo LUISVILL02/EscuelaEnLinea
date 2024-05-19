@@ -16,13 +16,11 @@ import { IoSettingsOutline, IoExitOutline } from "react-icons/io5";
 import { useUserStore } from "@store";
 import { NavLink, useNavigate } from "react-router-dom";
 import { routes } from "@config";
-import { parseName, parseRole } from "@utils";
 
 const AvatarDropdown = () => {
-  const firtName = useUserStore((state) => state.firtName);
-  const lastName = useUserStore((state) => state.lastName);
-  const imgUrl = useUserStore((state) => state.imgUrl);
-  const rol = useUserStore((state) => state.rol);
+  const imgUrl = "https://bit.ly/dan-abramov";
+  const rol = useUserStore((state) => state.roles[0]);
+  const email = useUserStore((state) => state.email);
   const logOut = useUserStore((state) => state.logOut);
   const navigate = useNavigate();
 
@@ -53,16 +51,14 @@ const AvatarDropdown = () => {
           bg={"primary.400"}
           color={"white"}
         >
-          {parseRole(rol)}
+          {rol.toLowerCase()}
         </Badge>
         <Center>
           <Avatar size={"xl"} src={imgUrl} />
         </Center>
         <Center my={4}>
           <Box alignItems={"center"}>
-            <Text fontWeight={500}>
-              {parseName(firtName)} {parseName(lastName)}
-            </Text>
+            <Text fontWeight={500}>{email}</Text>
           </Box>
         </Center>
 

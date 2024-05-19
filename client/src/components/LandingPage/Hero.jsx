@@ -11,15 +11,14 @@ import { routes } from "@config";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-// esto es temporal, hay que descargar las imagenes y pasarla por un optimizador
-const ALL_URL_IMG = [
-  "https://calendariouni.000webhostapp.com/assets/img/bg.jpg",
-  "https://calendariouni.000webhostapp.com/assets/img/hero-carousel/1.jpg",
-  "https://calendariouni.000webhostapp.com/assets/img/hero-carousel/2.jpg",
-  "https://calendariouni.000webhostapp.com/assets/img/hero-carousel/3.jpg",
-  "https://calendariouni.000webhostapp.com/assets/img/hero-carousel/4.jpg",
-  "https://calendariouni.000webhostapp.com/assets/img/hero-carousel/5.jpg",
-];
+import img1 from "@assets/imgs/carousel/carousel1.jpeg";
+import img2 from "@assets/imgs/carousel/carousel2.jpeg";
+import img3 from "@assets/imgs/carousel/carousel3.jpeg";
+import img4 from "@assets/imgs/carousel/carousel4.jpeg";
+import img5 from "@assets/imgs/carousel/carousel5.jpeg";
+import img6 from "@assets/imgs/carousel/carousel6.jpeg";
+
+const ALL_URL_IMG = [img1, img2, img3, img4, img5, img6];
 
 const Hero = () => {
   const [img, setImg] = useState(ALL_URL_IMG[0]);
@@ -36,6 +35,11 @@ const Hero = () => {
 
     return () => clearInterval(interval);
   }, [img]);
+
+  const scroll = () => {
+    const section = document.querySelector("#blog");
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <Flex
@@ -92,6 +96,7 @@ const Hero = () => {
               Inciar Sesión
             </Button>
             <Button
+              onClick={() => scroll()}
               bg={"whiteAlpha.300"}
               rounded={"full"}
               color={"white"}
