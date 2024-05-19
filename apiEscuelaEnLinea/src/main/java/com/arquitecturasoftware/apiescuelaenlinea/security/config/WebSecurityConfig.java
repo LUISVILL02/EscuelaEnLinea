@@ -32,6 +32,7 @@ public class WebSecurityConfig {
                                 .requestMatchers("/EscuelaEnLinea/V.1.0.0/auth/**").permitAll()
                                 .requestMatchers("/swagger-ui/**").permitAll()
                                 .requestMatchers("/v3/api-docs/**").permitAll()
+                                .requestMatchers("/EscuelaEnLinea/V.1.0.0/administrador/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManager->

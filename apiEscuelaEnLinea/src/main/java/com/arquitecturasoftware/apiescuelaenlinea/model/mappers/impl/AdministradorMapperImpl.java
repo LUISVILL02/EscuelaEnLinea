@@ -54,7 +54,10 @@ public class AdministradorMapperImpl implements AdministradorMapper {
         administradorEDto.setIdentificador(administrador.getIdentificacion());
         administradorEDto.setTelefono(administrador.getTelefono());
         administradorEDto.setFechaNacimiento(administrador.getFechaNacimiento());
-        administradorEDto.setRoles(administrador.getRoles().stream().map(role -> role.getName().name()).collect(Collectors.toSet()));
-        return null;
+        administradorEDto.setRoles(administrador.getRoles().
+                stream().
+                map(role -> role.getName().name()).
+                collect(Collectors.toSet()));
+        return administradorEDto;
     }
 }
