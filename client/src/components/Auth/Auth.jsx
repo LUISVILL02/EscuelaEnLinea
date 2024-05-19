@@ -17,14 +17,10 @@ import {
 import { useLogIn } from "@hooks";
 
 export default function Auth() {
-  const {
-    handleSubmit,
-    errors,
-    isSubmitting,
-    isValid,
-    register,
-    onSubmitHandler,
-  } = useLogIn();
+  const { handleSubmit, errors, isSubmitting, register, onSubmitHandler } =
+    useLogIn();
+
+  console.log(errors);
 
   return (
     <Stack
@@ -74,7 +70,7 @@ export default function Auth() {
             >
               <Link color={"primary.400"}>Recuperar contraseña</Link>
             </Stack>
-            {(errors.contraseña || errors.correo) && (
+            {(errors.contraseña || errors.correo || errors.server) && (
               <Alert
                 status="error"
                 bg="danger.50"
@@ -84,12 +80,14 @@ export default function Auth() {
                 <AlertIcon />
                 <AlertTitle>Error!</AlertTitle>
                 <AlertDescription>
-                  {errors.correo?.message || errors.contraseña?.message}
+                  {errors.correo?.message ||
+                    errors.contraseña?.message ||
+                    errors.server?.message}
                 </AlertDescription>
               </Alert>
             )}
             <Button
-              disabled={!isValid || isSubmitting}
+              disabled={isSubmitting}
               type="submit"
               bg={"primary.400"}
               color={"#fff"}

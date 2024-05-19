@@ -9,20 +9,19 @@ const useLogIn = () => {
     handleSubmit,
     formState: { errors, isSubmitting, isValid },
     register,
-    isLoading,
-    isError,
   } = useForm();
 
   const logIn = useUserStore((state) => state.logIn);
-
   const navigate = useNavigate();
 
   const mutation = useMutation({
     mutationFn: (credentials) => authenticate(credentials),
     onSuccess: (data) => {
-      console.log(data);
       logIn(data);
       navigate("/app");
+    },
+    onError: (error) => {
+      console.log("error", error.message);
     },
   });
 
@@ -32,11 +31,9 @@ const useLogIn = () => {
     handleSubmit,
     onSubmitHandler,
     errors,
-    isSubmitting,
+    isSubmitting: isSubmitting || mutation.isLoading,
     isValid,
     register,
-    isLoading,
-    isError,
   };
 };
 

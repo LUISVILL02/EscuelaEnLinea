@@ -19,7 +19,15 @@ export const AxiosInterceptor = () => {
       return res.data;
     },
     (err) => {
-      return err;
+      // Si la respuesta tiene un código de error (400, 401, 500, etc.)
+      console.log(err.response);
+      if (err.response) {
+        if (!err.response.data.ok) {
+          throw new Error(`${err?.response?.data}`);
+        }
+      } else {
+        throw new Error(err.message);
+      }
     },
   );
 };
