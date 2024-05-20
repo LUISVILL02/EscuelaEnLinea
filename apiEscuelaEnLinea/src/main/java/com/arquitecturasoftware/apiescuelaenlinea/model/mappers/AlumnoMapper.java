@@ -4,13 +4,13 @@ import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.AlumnoEDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.AlumnoGDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Alumno;
 import org.mapstruct.*;
+import org.springframework.stereotype.Component;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface AlumnoMapper {
 
     @Mappings({
-            @Mapping(source = "acudiente.idUser", target = "idAcudiente"),
-            @Mapping(source = "curso.idCurso", target = "idCurso"),
+            @Mapping(source = "curso.idCurso", target = "idCurso")
     })
     AlumnoGDto toDto(Alumno alumno);
     @InheritInverseConfiguration

@@ -4,6 +4,7 @@ package com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -21,4 +22,8 @@ public class AlumnoEDto {
     private String NombreAcudiente;
     private String apellidoAcudiente;
     private String nombreCurso;
+
+    private List<AsistenciaEDto> asistencias;
+    private List<NotaEDto> notas;
+    private List<ObservacionEDto> observaciones;
 }

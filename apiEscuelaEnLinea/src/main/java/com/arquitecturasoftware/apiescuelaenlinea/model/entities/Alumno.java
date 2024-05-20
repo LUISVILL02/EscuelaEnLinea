@@ -21,11 +21,13 @@ public class Alumno {
     private Long idAlumno;
     private String nombre;
     private String apellido;
+    @Column(unique = true)
     private String correo;
     private Long telefono;
     private LocalDate fechaNacimiento;
     private String dirección;
-    private Long identificación;
+    @Column(unique = true)
+    private String identificación;
     private String fotografia;
 
     //relationship
@@ -50,4 +52,12 @@ public class Alumno {
     //notas
     @OneToMany(mappedBy = "alumno")
     private List<Nota> notas;
+
+    public Alumno updateAlumno(Alumno alumno){
+        return new Alumno(this.idAlumno, alumno.nombre, alumno.apellido,
+                alumno.correo, alumno.telefono, alumno.fechaNacimiento,
+                alumno.dirección, alumno.identificación, alumno.fotografia,
+                alumno.acudiente, alumno.curso, alumno.observaciones, alumno.asistencias,
+                alumno.notas);
+    }
 }
