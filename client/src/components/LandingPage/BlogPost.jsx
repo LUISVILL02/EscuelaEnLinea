@@ -74,7 +74,7 @@ const CardBlog = ({ imgUrl, title, text, cat }) => {
       <Box px={5} pb={5}>
         <Button
           mt={5}
-          bg={"primary.500"}
+          bg={"primary.400"}
           color={"white"}
           rightIcon={<IoIosArrowForward />}
           colorScheme="gray"
