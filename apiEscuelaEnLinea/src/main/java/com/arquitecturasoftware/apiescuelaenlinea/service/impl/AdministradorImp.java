@@ -2,7 +2,9 @@ package com.arquitecturasoftware.apiescuelaenlinea.service.impl;
 
 import com.arquitecturasoftware.apiescuelaenlinea.exceptions.EntityNoFoundException;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.AdministradorEDto;
+import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.AdministradorGDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Administrador;
+import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Alumno;
 import com.arquitecturasoftware.apiescuelaenlinea.model.mappers.AdministradorMapper;
 import com.arquitecturasoftware.apiescuelaenlinea.repositories.AdministradorRepository;
 import com.arquitecturasoftware.apiescuelaenlinea.service.AdministradorService;
@@ -51,4 +53,15 @@ public class AdministradorImp implements AdministradorService {
         if (existAdmin) administradorRepository.deleteById(id);
         else throw new EntityNoFoundException("No existe un administrador con id: " + id);
     }
+
+    @Override
+    public AdministradorEDto updateById(AdministradorGDto administrador, long id) {
+        Optional<Administrador> admin = administradorRepository.findById(id);
+        if(admin.isPresent()){
+            return administradorMapper.toEDto(administradorRepository.save(administradorMapper.toAdministrador(administrador)));
+        }
+        Administrador adminUpdate = admin.get().updateAdmin(administradorMapper.toAdministrador(administrador));
+        return administradorMapper.toEDto(administradorRepository.save(adminUpdate));
+    }
 }
+

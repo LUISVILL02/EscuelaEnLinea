@@ -26,4 +26,19 @@ public class Administrador extends Usuario{
         super(idUser, nombre, apellido, identificacion, correo, telefono, contraseña, roles);
         this.fechaNacimiento = fechaNacimiento;
     }
+
+    public Administrador updateAdmin(Administrador administrador){
+        return new Administrador(
+                this.getIdUser(),
+                administrador.getNombre(),
+                administrador.getApellido(),
+                administrador.getIdentificacion(),
+                this.getCorreo(),
+                administrador.getTelefono(),
+                this.getPassword(),
+                this.getRoles(),
+                administrador.fechaNacimiento
+        );
+    }
 }
+
