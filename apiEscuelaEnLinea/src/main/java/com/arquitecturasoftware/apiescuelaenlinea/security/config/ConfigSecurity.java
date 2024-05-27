@@ -38,7 +38,7 @@ public class ConfigSecurity {
     @Bean
     public UserDetailsService userDetailService() {
         return username -> usuarioRepository.findByCorreo(username)
-                .orElseThrow(()-> new RuntimeException("Auth not found with name " + username));
+                .orElseThrow(()-> new RuntimeException("Auth no eocntrado con correo  " + username));
     }
 
     @Bean

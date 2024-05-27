@@ -111,7 +111,7 @@ public class AuthController {
             @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = String.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "400", content = { @Content(schema = @Schema(implementation = String.class), mediaType = "application/json") })})
     @PostMapping("/register/administrador")
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<String> registerAdministrador(@RequestBody AdministradorGDto administradorGDto) {
         try {
             return ResponseEntity.ok(authService.registerAdministrador(administradorGDto));

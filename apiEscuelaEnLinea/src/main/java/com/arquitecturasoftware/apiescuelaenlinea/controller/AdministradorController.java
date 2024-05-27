@@ -36,14 +36,17 @@ import java.util.Optional;
 public class AdministradorController {
     private final AdministradorService administradorService;
 
-    @GetMapping
+    @GetMapping("/all")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<List<AdministradorEDto>> findAll(){
+    public ResponseEntity<?> findAll(){
         List<AdministradorEDto> administradores = administradorService.findAll();
+        if (administradores.isEmpty()) {
+            return new ResponseEntity<>("La lista de administradores está vacía", HttpStatus.NO_CONTENT);
+        }
         return new ResponseEntity<>(administradores, HttpStatus.OK);
     }
 
-    @GetMapping("/{nombre}{apellido}")
+    @GetMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<AdministradorEDto> findByFullName(@RequestParam  @NotBlank @PathVariable String nombre, @RequestParam @NotBlank @PathVariable  String apellido){
         if (nombre != null && apellido != null){
@@ -61,8 +64,8 @@ public class AdministradorController {
         @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = AdministradorEDto.class), mediaType = "application/json") }),
         @ApiResponse(responseCode = "400", content = { @Content(schema = @Schema(implementation = String.class), mediaType = "application/json") })})
 
-@GetMapping("/{id}")
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<AdministradorEDto> findById(@RequestParam @PathVariable Long id){
         if (id != null){
             Optional<AdministradorEDto> administrador = administradorService.findById(id);
@@ -88,12 +91,4 @@ public class AdministradorController {
         }
         return ResponseEntity.notFound().build();
     }
-
-    /*
-    @PutMapping
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<AdministradorEDto> updateAdmin(@Valid @RequestBody AdministradorGDto administrador, @RequestParam @PathVariable Long id){
-        return new ResponseEntity<>(administradorService.updateById(administrador, id), HttpStatus.OK);
-    }
-     */
 }
