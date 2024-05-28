@@ -7,3 +7,7 @@ export const createTeacher = async (teacher) => {
 export const getTeachers = async () => {
   return await axios.get("/profesor/all");
 };
+
+export const deleteTeacher = async (id) => {
+  return await axios.delete(`/profesor/${id}`);
+};

@@ -15,11 +15,12 @@ import {
 import { useForm } from "react-hook-form";
 
 const GenericModalForm = ({ isOpen, onClose, fields, postFunction }) => {
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, reset } = useForm();
 
   const onSubmit = async (data) => {
     postFunction(data);
     onClose();
+    reset();
   };
 
   return (

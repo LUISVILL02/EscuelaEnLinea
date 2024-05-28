@@ -4,27 +4,21 @@ import TableHead from "./TableHead";
 import TableRow from "./TableRow";
 import TableLayout from "./TableLayout";
 
-const Table = ({ columns, rows, actions, modalToAdd }) => {
+const Table = ({ columns, rows, modalToAdd }) => {
   return (
     <TableLayout modalToAdd={modalToAdd}>
       <ChakraTable px={10}>
-        <TableHead columns={columns} actions={actions} />
+        <TableHead columns={columns} />
         <Tbody>
-          {rows.length === 0 && (
+          {rows.length === 0 ? (
             <Tr>
-              <Td colSpan={columns.length + (actions ? 1 : 0)}>
-                No se ha encontrado ningún registro
-              </Td>
+              <Td>No se ha encontrado ningún registro</Td>
             </Tr>
+          ) : (
+            rows.map((row) => (
+              <TableRow key={row.id} columns={columns} row={row} />
+            ))
           )}
-          {rows.map((row) => (
-            <TableRow
-              key={row.id}
-              columns={columns}
-              actions={actions}
-              row={row}
-            />
-          ))}
         </Tbody>
       </ChakraTable>
     </TableLayout>
@@ -34,7 +28,6 @@ const Table = ({ columns, rows, actions, modalToAdd }) => {
 Table.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.object).isRequired,
   rows: PropTypes.arrayOf(PropTypes.object).isRequired,
-  actions: PropTypes.bool,
   modalToAdd: PropTypes.node,
 };
 

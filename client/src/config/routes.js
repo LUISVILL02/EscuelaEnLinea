@@ -10,4 +10,7 @@ export default Object.freeze({
     COURSES: "/admin/courses",
     SUBJECTS: "/admin/subjects",
   },
+  PROFESOR: {
+    APP: "/profesor/panel",
+  },
 });
