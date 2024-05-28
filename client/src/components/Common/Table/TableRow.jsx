@@ -1,40 +1,23 @@
 import PropTypes from "prop-types";
-import { ButtonGroup, IconButton, Td, Tr } from "@chakra-ui/react";
-import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
+import { Td, Tr } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
-const TableRow = ({ columns, actions, row }) => {
+const TableRow = ({ columns, row }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (id) => {
+    navigate(`${id}`);
+  };
+
   return (
-    <Tr key={row.id} _hover={{ bg: "gray.200", cursor: "pointer" }}>
+    <Tr
+      key={row.id}
+      _hover={{ bg: "gray.100", cursor: "pointer" }}
+      onClick={() => handleClick(row.id)}
+    >
       {columns.map((column) => (
         <Td key={`${row.id}-${column.id}`}>{row[column.id]}</Td>
       ))}
-      {actions && (
-        <Td>
-          <ButtonGroup>
-            <IconButton
-              variant="outline"
-              colorScheme="black"
-              isRound={true}
-              _hover={{ bg: "info.50" }}
-              icon={<FaEye />}
-            />
-            <IconButton
-              variant="outline"
-              colorScheme="black"
-              isRound={true}
-              _hover={{ bg: "success.50" }}
-              icon={<FaEdit />}
-            />
-            <IconButton
-              variant="outline"
-              colorScheme="black"
-              isRound={true}
-              _hover={{ bg: "danger.50" }}
-              icon={<FaTrash />}
-            />
-          </ButtonGroup>
-        </Td>
-      )}
     </Tr>
   );
 };

@@ -3,7 +3,7 @@ import {
   LandingPage,
   Layout,
   AdminPanel,
-  TeachersTable,
+  TeachersPanel,
 } from "@components";
 import { routes } from "@config";
 import {
@@ -30,7 +30,7 @@ const ADMIN_ROUTES = [
     path: routes.ADMIN.TEACHERS,
     element: (
       <PrivateRoutes rol={["ADMIN"]}>
-        <TeachersTable />
+        <TeachersPanel />
       </PrivateRoutes>
     ),
   },
@@ -45,6 +45,13 @@ const ADMIN_ROUTES = [
   {
     path: routes.ADMIN.SUBJECTS,
     element: <div>Subjects</div>,
+  },
+];
+
+const PROFESOR_ROUTES = [
+  {
+    path: routes.PROFESOR.APP,
+    element: <div>vista profesor</div>,
   },
 ];
 
@@ -66,6 +73,7 @@ const router = createBrowserRouter([
         ),
       },
       ...ADMIN_ROUTES,
+      ...PROFESOR_ROUTES,
     ],
   },
 ]);
