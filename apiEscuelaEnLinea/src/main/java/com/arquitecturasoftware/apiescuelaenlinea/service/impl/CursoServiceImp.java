@@ -66,4 +66,11 @@ public class CursoServiceImp implements CursoService {
         return Optional.ofNullable(cursoRepository.findByNombre(nombre).map(cursoMapper::toEDto)
                 .orElseThrow(() -> new EntityNoFoundException("Curso no encontrado con el nombre" + nombre)));
     }
+
+    @Override
+    public Page<CursoEDto> listarCursosPorProfesor(Long id) {
+        Pageable pageable = PageRequest.of(0, 20);
+        Page<Curso> cursos = cursoRepository.findByProfesorId(id, pageable);
+        return cursos.map(cursoMapper::toEDto);
+    }
 }

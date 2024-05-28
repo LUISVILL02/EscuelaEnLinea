@@ -58,5 +58,4 @@ public class ProfesorController {
         }
         return ResponseEntity.notFound().build();
     }
-
 }

@@ -13,4 +13,5 @@ public interface CursoService {
     void eliminarCurso(Long idCurso);
     Double promedioNotas(Long idCurso);
     Optional<CursoEDto> buscarCursoPorNombre(String nombre);
+    Page<CursoEDto> listarCursosPorProfesor(Long id);
 }

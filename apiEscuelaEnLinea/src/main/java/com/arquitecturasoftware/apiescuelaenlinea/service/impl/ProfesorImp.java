@@ -1,12 +1,18 @@
 package com.arquitecturasoftware.apiescuelaenlinea.service.impl;
 
 import com.arquitecturasoftware.apiescuelaenlinea.exceptions.EntityNoFoundException;
+import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.CursoEDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.ProfesorEDto;
+import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Curso;
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Profesor;
+import com.arquitecturasoftware.apiescuelaenlinea.model.mappers.CursoMapper;
 import com.arquitecturasoftware.apiescuelaenlinea.model.mappers.ProfesorMapper;
 import com.arquitecturasoftware.apiescuelaenlinea.repositories.ProfesorRepository;
 import com.arquitecturasoftware.apiescuelaenlinea.service.ProfesorService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +24,7 @@ import java.util.stream.Collectors;
 public class ProfesorImp implements ProfesorService {
     private final ProfesorRepository profesorRepository;
     private final ProfesorMapper profesorMapper;
+    private final CursoMapper cursoMapper;
 
     @Override
     public Optional<ProfesorEDto> findByNombreCompleto(String nombre, String apellido) {
