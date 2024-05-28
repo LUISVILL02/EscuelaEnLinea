@@ -20,7 +20,11 @@ export default function Auth() {
   const { handleSubmit, errors, isSubmitting, register, onSubmitHandler } =
     useLogIn();
 
-  console.log(errors);
+  const existError = (errors) => {
+    return Object.keys(errors).length > 0
+      ? Object.values(errors)[0].message
+      : null;
+  };
 
   return (
     <Stack
@@ -70,7 +74,7 @@ export default function Auth() {
             >
               <Link color={"primary.400"}>Recuperar contraseña</Link>
             </Stack>
-            {(errors.contraseña || errors.correo || errors.server) && (
+            {existError(errors) && (
               <Alert
                 status="error"
                 bg="danger.50"
@@ -79,11 +83,7 @@ export default function Auth() {
               >
                 <AlertIcon />
                 <AlertTitle>Error!</AlertTitle>
-                <AlertDescription>
-                  {errors.correo?.message ||
-                    errors.contraseña?.message ||
-                    errors.server?.message}
-                </AlertDescription>
+                <AlertDescription>{existError(errors)}</AlertDescription>
               </Alert>
             )}
             <Button

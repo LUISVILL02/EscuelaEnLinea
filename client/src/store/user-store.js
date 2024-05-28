@@ -11,7 +11,7 @@ export const useUserStore = create((set, get) => ({
   ...initialState,
   isActive: () => (get().id ? true : false),
   logIn: (user) => {
-    localStorage.setItem("token", JSON.stringify(user.token));
+    localStorage.setItem("token", user.token);
     set({ ...user });
   },
   logOut: () => {
