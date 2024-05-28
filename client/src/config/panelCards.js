@@ -1,6 +1,14 @@
 import routes from "./routes";
 
-export const itemsNavbarData = {
+import {
+  FaUserGraduate,
+  FaChalkboardTeacher,
+  FaUserFriends,
+  FaBookOpen,
+  FaClipboardList,
+} from "react-icons/fa";
+
+export const panelCards = {
   PROFESOR: [
     {
       label: "Panel",
@@ -32,28 +40,29 @@ export const itemsNavbarData = {
   ],
   ADMIN: [
     {
-      label: "Panel",
-      href: routes.ADMIN.APP,
-    },
-    {
       label: "Estudiantes",
       href: routes.ADMIN.STUDENTS,
+      Icon: FaUserGraduate,
     },
     {
       label: "Profesores",
       href: routes.ADMIN.TEACHERS,
+      Icon: FaChalkboardTeacher,
     },
     {
       label: "Acudientes",
       href: routes.ADMIN.ATTENDANTS,
+      Icon: FaUserFriends,
     },
     {
       label: "Cursos",
       href: routes.ADMIN.COURSES,
+      Icon: FaBookOpen,
     },
     {
       label: "Asignaturas",
       href: routes.ADMIN.SUBJECTS,
+      Icon: FaClipboardList,
     },
   ],
 };

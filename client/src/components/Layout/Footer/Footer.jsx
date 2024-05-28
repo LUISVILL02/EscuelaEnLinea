@@ -52,7 +52,11 @@ export default function Footer() {
         align={{ base: "center", md: "center" }}
         h={{ xl: "82px" }}
       >
-        <img src={imagotipo} alt="logo de la app que contiene buho con el texto escuela en linea" width={100} />
+        <img
+          src={imagotipo}
+          alt="logo de la app que contiene buho con el texto escuela en linea"
+          width={100}
+        />
         <Text align={"center"}>
           © {new Date().getFullYear()} Escuela en linea. Todo los derechos
           reservados

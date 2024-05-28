@@ -12,7 +12,7 @@ const MobileNavItem = ({ label, children, href }) => {
   const { onToggle } = useDisclosure();
 
   return (
-    <NavLink to={label}>
+    <NavLink to={"/" + label}>
       <Stack spacing={4} onClick={children && onToggle}>
         <Box
           py={2}

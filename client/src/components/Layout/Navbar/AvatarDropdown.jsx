@@ -15,10 +15,10 @@ import { IoSettingsOutline, IoExitOutline } from "react-icons/io5";
 
 import { useUserStore } from "@store";
 import { NavLink, useNavigate } from "react-router-dom";
+import avatarImg from "@assets/avatar/avatar-male-gold-1.png";
 import { routes } from "@config";
 
 const AvatarDropdown = () => {
-  const imgUrl = "https://bit.ly/dan-abramov";
   const rol = useUserStore((state) => state.roles[0]);
   const email = useUserStore((state) => state.email);
   const logOut = useUserStore((state) => state.logOut);
@@ -38,7 +38,7 @@ const AvatarDropdown = () => {
         cursor={"pointer"}
         minW={0}
       >
-        <Avatar size={"md"} src={imgUrl} />
+        <Avatar size={"md"} src={avatarImg} />
       </MenuButton>
 
       <MenuList alignItems={"center"}>
@@ -54,7 +54,7 @@ const AvatarDropdown = () => {
           {rol.toLowerCase()}
         </Badge>
         <Center>
-          <Avatar size={"xl"} src={imgUrl} />
+          <Avatar size={"xl"} src={avatarImg} />
         </Center>
         <Center my={4}>
           <Box alignItems={"center"}>

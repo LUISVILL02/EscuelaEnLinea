@@ -5,8 +5,9 @@ import { routes } from "@config";
 
 const PublicRoutes = ({ children }) => {
   const id = Boolean(useUserStore((state) => state.id));
+  const rol = useUserStore((state) => state.roles[0]);
 
-  return id ? <Navigate to={routes.APP} /> : children;
+  return id ? <Navigate to={routes[rol].APP} /> : children;
 };
 
 PublicRoutes.propTypes = {
