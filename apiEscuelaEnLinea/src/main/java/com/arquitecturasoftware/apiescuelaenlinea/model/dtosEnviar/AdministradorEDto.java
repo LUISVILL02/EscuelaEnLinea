@@ -11,6 +11,5 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = true)
 public class AdministradorEDto extends UsuarioEDto {
     @JsonFormat(pattern = "dd/MM/yyyy", timezone = "GMT-5")
-    @Past(message = "La fecha de nacimiento debe ser pasada o presente")
     private LocalDate fechaNacimiento;
 }

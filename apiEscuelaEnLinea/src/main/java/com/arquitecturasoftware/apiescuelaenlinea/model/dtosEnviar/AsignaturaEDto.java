@@ -8,7 +8,5 @@ import jakarta.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class AsignaturaEDto {
     private Long idAsignatura;
-
-    @NotBlank(message = "El nombre de la asignatura no puede estar en blanco")
     private String nombre;
 }

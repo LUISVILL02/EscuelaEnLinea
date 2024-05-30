@@ -8,6 +8,5 @@ import jakarta.validation.constraints.NotBlank;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class AcudienteEDto extends UsuarioEDto {
-    @NotBlank(message = "La dirección no puede estar en blanco")
     private String direccion;
 }

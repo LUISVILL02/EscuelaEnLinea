@@ -13,11 +13,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class ProfesorEDto extends UsuarioEDto {
-    @Past(message = "La fecha de nacimiento debe ser en el pasado")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate fechaNacimiento;
-
-    @NotBlank(message = "La dirección no puede estar vacía")
-    @Size(max = 255, message = "La dirección no puede tener más de 255 caracteres")
     private String direccion;
 }
