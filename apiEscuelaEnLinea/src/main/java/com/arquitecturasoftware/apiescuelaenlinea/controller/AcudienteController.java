@@ -48,4 +48,14 @@ public class AcudienteController {
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<String> deleteById(@PathVariable Long id){
+        if (id != null){
+            acudienteService.deleteById(id);
+            return ResponseEntity.ok("Se borro correctamente el acudiente");
+        }
+        return new ResponseEntity<>("El id es null",HttpStatus.BAD_REQUEST);
+    }
 }

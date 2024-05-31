@@ -35,9 +35,9 @@ public class AlumnoServiceImp implements AlumnoService {
         Acudiente acudiente = acudienteRepository.findById(alumnoGdto.getIdAcudiente())
                 .orElseThrow(() -> new EntityNoFoundException("Acudiente no encontrado"));
         Alumno alumno = alumnoMapper.toAlumno(alumnoGdto);
+        alumno.setAcudiente(acudiente);
         curso.getAlumnos().add(alumno);
         alumno.setCurso(curso);
-        alumno.setAcudiente(acudiente);
         return alumnoMapper.toEDto(alumnoRepository.save(alumno));
     }
 
