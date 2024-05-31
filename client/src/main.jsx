@@ -7,6 +7,7 @@ import { AxiosInterceptor } from "@services";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SnackbarProvider } from "notistack";
 import { SnackbarUtilsConfigurator } from "@components";
+import "./style.css";
 
 AxiosInterceptor();
 const queryClient = new QueryClient();
