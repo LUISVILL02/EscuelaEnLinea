@@ -3,9 +3,11 @@ package com.arquitecturasoftware.apiescuelaenlinea.service.impl;
 import com.arquitecturasoftware.apiescuelaenlinea.exceptions.EntityNoFoundException;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.AlumnoEDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.AlumnoGDto;
+import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Acudiente;
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Alumno;
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Curso;
 import com.arquitecturasoftware.apiescuelaenlinea.model.mappers.AlumnoMapper;
+import com.arquitecturasoftware.apiescuelaenlinea.repositories.AcudienteRepository;
 import com.arquitecturasoftware.apiescuelaenlinea.repositories.AlumnoRepository;
 import com.arquitecturasoftware.apiescuelaenlinea.repositories.CursoRepository;
 import com.arquitecturasoftware.apiescuelaenlinea.service.AlumnoService;
@@ -24,12 +26,16 @@ public class AlumnoServiceImp implements AlumnoService {
     private final AlumnoRepository alumnoRepository;
     private final CursoRepository cursoRepository;
     private final AlumnoMapper alumnoMapper;
+    private final AcudienteRepository acudienteRepository;
 
     @Override
     public AlumnoEDto saveAlumno(AlumnoGDto alumnoGdto) {
         Curso curso = cursoRepository.findById(alumnoGdto.getIdCurso())
                 .orElseThrow(() -> new EntityNoFoundException("Curso no encontrado"));
+        Acudiente acudiente = acudienteRepository.findById(alumnoGdto.getIdAcudiente())
+                .orElseThrow(() -> new EntityNoFoundException("Acudiente no encontrado"));
         Alumno alumno = alumnoMapper.toAlumno(alumnoGdto);
+        alumno.setAcudiente(acudiente);
         curso.getAlumnos().add(alumno);
         alumno.setCurso(curso);
         return alumnoMapper.toEDto(alumnoRepository.save(alumno));

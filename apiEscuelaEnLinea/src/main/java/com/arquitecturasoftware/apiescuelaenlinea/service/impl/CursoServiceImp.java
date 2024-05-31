@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -31,7 +32,9 @@ public class CursoServiceImp implements CursoService {
         Curso curso = cursoMapper.toCurso(cursoGDto);
         curso.setProfesor(profesor);
         profesor.getCursos().add(curso);
-        if (curso.getAlumnos().isEmpty()) curso.setAlumnos(new ArrayList<>());
+        if (Objects.isNull(curso.getAlumnos())){
+            curso.setAlumnos(new ArrayList<>());
+        }
         return cursoMapper.toEDto(cursoRepository.save(curso));
     }
 
@@ -65,5 +68,12 @@ public class CursoServiceImp implements CursoService {
     public Optional<CursoEDto> buscarCursoPorNombre(String nombre) {
         return Optional.ofNullable(cursoRepository.findByNombre(nombre).map(cursoMapper::toEDto)
                 .orElseThrow(() -> new EntityNoFoundException("Curso no encontrado con el nombre" + nombre)));
+    }
+
+    @Override
+    public Page<CursoEDto> listarCursosPorProfesor(Long id) {
+        Pageable pageable = PageRequest.of(0, 20);
+        Page<Curso> cursos = cursoRepository.findByProfesorId(id, pageable);
+        return cursos.map(cursoMapper::toEDto);
     }
 }

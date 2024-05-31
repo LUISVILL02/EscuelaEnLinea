@@ -4,6 +4,7 @@ package com.arquitecturasoftware.apiescuelaenlinea.controller;
 import com.arquitecturasoftware.apiescuelaenlinea.model.DtosAuth.Login;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.AdministradorEDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.AlumnoEDto;
+import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.CursoEDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.AdministradorGDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.ProfesorGDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Administrador;
@@ -46,9 +47,16 @@ public class AdministradorController {
         return new ResponseEntity<>(administradores, HttpStatus.OK);
     }
 
+    @Operation(
+            summary = "Obtener profesor por nombre completo",
+            description = "Este recurso devuelve un profesor atraves de su nombre y apellido",
+            tags = {"Get" })
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = CursoEDto.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "400", content = { @Content(schema = @Schema(implementation = String.class), mediaType = "application/json") })})
     @GetMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<AdministradorEDto> findByFullName(@RequestParam  @NotBlank @PathVariable String nombre, @RequestParam @NotBlank @PathVariable  String apellido){
+    public ResponseEntity<AdministradorEDto> findByFullName(@RequestParam  @NotBlank String nombre, @RequestParam @NotBlank String apellido){
         if (nombre != null && apellido != null){
             Optional<AdministradorEDto> administrador = administradorService.findByNombreCompleto(nombre, apellido);
             return administrador.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
@@ -63,15 +71,15 @@ public class AdministradorController {
 @ApiResponses({
         @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = AdministradorEDto.class), mediaType = "application/json") }),
         @ApiResponse(responseCode = "400", content = { @Content(schema = @Schema(implementation = String.class), mediaType = "application/json") })})
-
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<AdministradorEDto> findById(@RequestParam @PathVariable Long id){
+    public ResponseEntity<AdministradorEDto> findById(@PathVariable Long id){
         if (id != null){
             Optional<AdministradorEDto> administrador = administradorService.findById(id);
-            return administrador.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+            return administrador.map(eDto -> new ResponseEntity<>(eDto, HttpStatus.OK))
+                    .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         }
-        return ResponseEntity.notFound().build();
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @Operation(
@@ -81,14 +89,17 @@ public class AdministradorController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = String.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "400", content = { @Content(schema = @Schema(implementation = String.class), mediaType = "application/json") })})
-
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<String> deleteById(@RequestParam @PathVariable Long id){
-        if (id != null){
-            administradorService.deleteById(id);
-            return ResponseEntity.ok("Administrador borrado correctamente");
+    public ResponseEntity<String> deleteById(@PathVariable Long id){
+        try {
+            if (id != null){
+                administradorService.deleteById(id);
+                return ResponseEntity.ok("Administrador borrado correctamente");
+            }
+            return ResponseEntity.notFound().build();
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
-        return ResponseEntity.notFound().build();
     }
 }

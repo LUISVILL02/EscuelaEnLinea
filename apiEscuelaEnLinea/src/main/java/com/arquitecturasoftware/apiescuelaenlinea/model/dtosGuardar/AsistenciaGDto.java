@@ -10,8 +10,10 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class AsistenciaGDto {
     private Long idAsistencia;
-    @JsonFormat(pattern = "dd/MM/yyyy",timezone = "GMT-5")
+
+    @JsonFormat(pattern = "dd/MM/yyyy", timezone = "GMT-5")
     private LocalDate fecha;
+
     private Long idAlumno;
     private Long idEstadoAsistencia;
 }

@@ -1,6 +1,10 @@
 package com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar;
 
 import lombok.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;
 
@@ -15,5 +19,4 @@ public class ObservacionEDto {
     private String apellidoProfesor;
     private String nombreAlumno;
     private String apellidoAlumno;
-
 }

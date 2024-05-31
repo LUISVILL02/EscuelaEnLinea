@@ -9,11 +9,13 @@ import org.springframework.stereotype.Component;
 @Mapper(componentModel = "spring")
 public interface AlumnoMapper {
 
-    @Mappings({
-            @Mapping(source = "curso.idCurso", target = "idCurso")
-    })
+    // Removed mappings for idCurso and idAcudiente
     AlumnoGDto toDto(Alumno alumno);
-    @InheritInverseConfiguration
+
+    @Mappings({
+            @Mapping(target = "curso.idCurso", source = "idCurso"),
+            @Mapping(target = "acudiente.idUser", source = "idAcudiente")
+    })
     Alumno toAlumno(AlumnoGDto alumnoDto);
 
     @Mappings({

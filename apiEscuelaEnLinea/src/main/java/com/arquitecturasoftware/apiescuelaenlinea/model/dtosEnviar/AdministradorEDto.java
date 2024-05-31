@@ -1,8 +1,8 @@
 package com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 
 @Data
