@@ -6,7 +6,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import logo from "@assets/icons/logo.png";
+import imagotipo from "@assets/icons/imagotipo.svg";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import PropTypes from "prop-types";
 
@@ -52,7 +52,11 @@ export default function Footer() {
         align={{ base: "center", md: "center" }}
         h={{ xl: "82px" }}
       >
-        <img src={logo} alt="logo" width={150} />
+        <img
+          src={imagotipo}
+          alt="logo de la app que contiene buho con el texto escuela en linea"
+          width={100}
+        />
         <Text align={"center"}>
           © {new Date().getFullYear()} Escuela en linea. Todo los derechos
           reservados

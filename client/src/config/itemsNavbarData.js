@@ -1,3 +1,5 @@
+import routes from "./routes";
+
 export const itemsNavbarData = {
   PROFESOR: [
     {
@@ -31,23 +33,27 @@ export const itemsNavbarData = {
   ADMIN: [
     {
       label: "Panel",
-      href: "/app",
-    },
-    {
-      label: "Usuarios",
-      href: "/users",
-    },
-    {
-      label: "Asignaturas",
-      href: "/subjects",
+      href: routes.ADMIN.APP,
     },
     {
       label: "Estudiantes",
-      href: "/students",
+      href: routes.ADMIN.STUDENTS,
     },
     {
       label: "Profesores",
-      href: "/teachers",
+      href: routes.ADMIN.TEACHERS,
+    },
+    {
+      label: "Acudientes",
+      href: routes.ADMIN.ATTENDANTS,
+    },
+    {
+      label: "Cursos",
+      href: routes.ADMIN.COURSES,
+    },
+    {
+      label: "Asignaturas",
+      href: routes.ADMIN.SUBJECTS,
     },
   ],
 };

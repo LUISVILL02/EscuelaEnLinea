@@ -10,7 +10,7 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
 import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
-import logo from "@assets/icons/logo.png";
+import imagotipo from "@assets/icons/imagotipo.svg";
 import { useUserStore } from "@store";
 import { itemsNavbarData, theme, routes } from "@config";
 import AvatarDropdown from "./AvatarDropdown";
@@ -43,7 +43,11 @@ export default function Navbar() {
             as={NavLink}
             to={routes.home}
           >
-            <img src={logo} alt="logo" width={150} />
+            <img
+              src={imagotipo}
+              alt="logo de la app que contiene buho con el texto escuela en linea"
+              width={110}
+            />
           </Box>
         </Flex>
       </Box>
@@ -92,7 +96,7 @@ export default function Navbar() {
             as={NavLink}
             to={routes.home}
           >
-            <img src={logo} alt="logo" width={150} />
+            <img src={imagotipo} alt="logo" width={110} />
           </Box>
           <Flex display={{ base: "none", md: "flex" }} ml={5}>
             <DesktopNav navItems={itemsNavbarData[rolUser]} />
@@ -113,7 +117,7 @@ export default function Navbar() {
           color={"gray.700"}
           fontWeight={500}
         >
-          Universidad del Magdalena
+          Unimagdalena
         </Box>
         <Stack
           flex={{ base: 1, md: 0 }}

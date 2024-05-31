@@ -52,7 +52,7 @@ public class ProfesorController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<String> deleteById(@NotBlank @PathVariable Long id){
+    public ResponseEntity<String> deleteById(@PathVariable Long id){
         if (id != null){
             profesorService.deleteById(id);
             return ResponseEntity.ok("profesor borrado correctamente");

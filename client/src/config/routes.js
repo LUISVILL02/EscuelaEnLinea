@@ -1,9 +1,16 @@
 export default Object.freeze({
   AUTH: "/sign-in",
   HOME: "/",
-  APP: "/app",
-  ASSISTANCES: "/app/assistances",
-  REMARKS: "/app/remarks",
-  MESSAGES: "/app/messages",
-  SETTINGS: "/app/settings",
+  SETTINGS: "/settings",
+  ADMIN: {
+    APP: "/admin/panel",
+    STUDENTS: "/admin/students",
+    TEACHERS: "/admin/teachers",
+    ATTENDANTS: "/admin/attendants",
+    COURSES: "/admin/courses",
+    SUBJECTS: "/admin/subjects",
+  },
+  PROFESOR: {
+    APP: "/profesor/panel",
+  },
 });

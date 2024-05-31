@@ -3,6 +3,7 @@ import { authenticate } from "@services";
 import { useMutation } from "@tanstack/react-query";
 import { useUserStore } from "@store";
 import { useNavigate } from "react-router-dom";
+import { routes } from "@config";
 
 const useLogIn = () => {
   const {
@@ -18,20 +19,23 @@ const useLogIn = () => {
     mutationFn: (credentials) => authenticate(credentials),
     onSuccess: (data) => {
       logIn(data);
-      navigate("/app");
-    },
-    onError: (error) => {
-      console.log("error", error.message);
+      navigate(routes[data.roles[0]]?.APP);
     },
   });
 
-  const onSubmitHandler = (credentials) => mutation.mutate(credentials);
+  const onSubmitHandler = (credentials) => {
+    credentials = {
+      ...credentials,
+      correo: credentials.correo.toLowerCase(),
+    };
+    mutation.mutate(credentials);
+  };
 
   return {
     handleSubmit,
     onSubmitHandler,
     errors,
-    isSubmitting: isSubmitting || mutation.isLoading,
+    isSubmitting: isSubmitting || mutation.isPending,
     isValid,
     register,
   };
