@@ -1,8 +1,12 @@
 package com.arquitecturasoftware.apiescuelaenlinea.controller;
 
+import com.arquitecturasoftware.apiescuelaenlinea.exceptions.EntityNoFoundException;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.CursoEDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.CursoGDto;
+import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Profesor;
+import com.arquitecturasoftware.apiescuelaenlinea.repositories.ProfesorRepository;
 import com.arquitecturasoftware.apiescuelaenlinea.service.CursoService;
+import com.arquitecturasoftware.apiescuelaenlinea.service.ProfesorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -10,6 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -18,6 +23,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Tag(name = "Curso", description = "Recursos del modulo curso")
 @AllArgsConstructor
 @Validated
@@ -25,6 +32,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/EscuelaEnLinea/V.1.0.0/curso")
 public class CursoController {
     private final CursoService cursoService;
+    private final ProfesorRepository profesorRepository;
 
     @Operation(
             summary = "Guardar curso",
@@ -111,6 +119,29 @@ public class CursoController {
             }
             return new ResponseEntity<>(cursoService.buscarCursoPorNombre(nombre), HttpStatus.OK);
         }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @Operation(
+            summary = "Devuelve todos los cursos de un profesor",
+            description = "Este recurso devuelve todos los cursos de un profesor por su id",
+            tags = {"Get" })
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = String.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "400", content = { @Content(schema = @Schema(implementation = String.class), mediaType = "application/json") })})
+    @GetMapping("/profesor/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_PROFESOR')")
+    public ResponseEntity<?> getCursosByIdProfesor(@PathVariable @NotBlank Long id){
+        try {
+            if (id != null){
+                boolean exist = profesorRepository.existsById(id);
+                if (exist){
+                 Page<CursoEDto> cursoEDtos = cursoService.listarCursosPorProfesor(id);
+                 return new ResponseEntity<>(cursoEDtos, HttpStatus.OK);
+                }else return new ResponseEntity<>("No se encontro el profesor con id " + id, HttpStatus.NOT_FOUND);
+            }else return new ResponseEntity<>("El id es null", HttpStatus.NOT_ACCEPTABLE);
+        }catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

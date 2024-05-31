@@ -3,6 +3,7 @@ package com.arquitecturasoftware.apiescuelaenlinea.controller;
 import com.arquitecturasoftware.apiescuelaenlinea.model.DtosAuth.Login;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.AlumnoEDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.AlumnoGDto;
+import com.arquitecturasoftware.apiescuelaenlinea.service.AcudienteService;
 import com.arquitecturasoftware.apiescuelaenlinea.service.AlumnoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -12,6 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Tag(name = "Alumno", description = "Recurso para gestionar los alumnos")
 @RestController
 @RequestMapping("/EscuelaEnLinea/V.1.0.0/alumno")
@@ -27,7 +31,7 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 public class AlumnoController {
     private final AlumnoService alumnoService;
-
+    private final AcudienteService acudienteService;
 
     @Operation(
             summary = "Guardar un Alumno",
@@ -131,5 +135,15 @@ public class AlumnoController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<AlumnoEDto> updateAlumno(@Valid @RequestBody AlumnoGDto alumno, @PathVariable Long id){
         return new ResponseEntity<>(alumnoService.updateAlumno(alumno, id), HttpStatus.OK);
+    }
+
+    @GetMapping("/acudiente/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ACUDIENTE')")
+    public ResponseEntity<?> getAlumnoByIdAcudiente(@PathVariable @NotBlank Long id){
+        if (id != null){
+            List<AlumnoEDto> alumnoEDtos = acudienteService.getAlumnosByAcudiente(id);
+            return new ResponseEntity<>(alumnoEDtos, HttpStatus.OK);
+        }
+        return new ResponseEntity<>("El id es null",HttpStatus.NOT_ACCEPTABLE);
     }
 }

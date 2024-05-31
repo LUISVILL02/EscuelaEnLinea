@@ -1,5 +1,6 @@
 package com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar;
 
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.util.Set;

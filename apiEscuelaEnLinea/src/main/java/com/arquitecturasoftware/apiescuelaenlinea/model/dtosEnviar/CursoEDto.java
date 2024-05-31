@@ -1,7 +1,7 @@
 package com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar;
 
 import lombok.*;
-
+import jakarta.validation.constraints.*;
 import java.util.List;
 
 @Data

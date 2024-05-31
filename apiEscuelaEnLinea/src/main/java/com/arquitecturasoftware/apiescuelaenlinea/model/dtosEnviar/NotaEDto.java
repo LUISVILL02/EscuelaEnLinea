@@ -2,6 +2,7 @@ package com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
@@ -10,7 +11,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class NotaEDto {
     private Long idNota;
-    @JsonFormat(pattern = "dd/MM/yyyy", timezone = "GMT-5")
     private LocalDate fecha;
     private Integer periodo;
     private String nombreActividad;
