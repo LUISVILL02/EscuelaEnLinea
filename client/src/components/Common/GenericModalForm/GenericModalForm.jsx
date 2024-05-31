@@ -11,8 +11,10 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Select,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
+import useOptions from "@hooks/useOptions";
 
 const GenericModalForm = ({ isOpen, onClose, fields, postFunction }) => {
   const { handleSubmit, register, reset } = useForm();
@@ -33,11 +35,23 @@ const GenericModalForm = ({ isOpen, onClose, fields, postFunction }) => {
           <ModalBody>
             {fields.map((field) => (
               <FormControl key={field.name} mb={4}>
-                <FormLabel>{field.label}</FormLabel>
-                <Input
-                  type={field.type}
-                  {...register(field.name, field.validationRules)}
-                />
+                {field.type === "select" ? (
+                  <Select placeholder={field.label} {...register(field.name, field.validationRules)}>
+                    {useOptions(field)?.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </Select>
+                ) : (
+                  <>
+                    <FormLabel>{field.label}</FormLabel>
+                    <Input
+                      type={field.type}
+                      {...register(field.name, field.validationRules)}
+                    />
+                  </>
+                )}
               </FormControl>
             ))}
           </ModalBody>
