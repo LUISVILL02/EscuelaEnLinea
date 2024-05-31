@@ -1,4 +1,5 @@
 export { default as AdminPanel } from "./AdminPanel";
+export * from "./Attendants";
 export { default as TeacherCard } from "./TeacherCard";
 export { default as TeachersPanel } from "./TeachersPanel";
 export { default as ButtonAddModal } from "./common/ButtonAddModal";
