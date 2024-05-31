@@ -9,9 +9,12 @@ import org.springframework.stereotype.Component;
 @Mapper(componentModel = "spring")
 public interface AlumnoMapper {
 
+
     @Mappings({
-            @Mapping(source = "curso.idCurso", target = "idCurso")
+            @Mapping(target = "idCurso", ignore = true),
+            @Mapping(target = "idAcudiente", ignore = true)
     })
+
     AlumnoGDto toDto(Alumno alumno);
     @InheritInverseConfiguration
     Alumno toAlumno(AlumnoGDto alumnoDto);

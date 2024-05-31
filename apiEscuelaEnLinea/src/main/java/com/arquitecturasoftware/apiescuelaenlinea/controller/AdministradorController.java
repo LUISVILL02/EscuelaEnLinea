@@ -56,7 +56,7 @@ public class AdministradorController {
             @ApiResponse(responseCode = "400", content = { @Content(schema = @Schema(implementation = String.class), mediaType = "application/json") })})
     @GetMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<AdministradorEDto> findByFullName(@RequestParam  @NotBlank @PathVariable String nombre, @RequestParam @NotBlank @PathVariable  String apellido){
+    public ResponseEntity<AdministradorEDto> findByFullName(@RequestParam  @NotBlank String nombre, @RequestParam @NotBlank String apellido){
         if (nombre != null && apellido != null){
             Optional<AdministradorEDto> administrador = administradorService.findByNombreCompleto(nombre, apellido);
             return administrador.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
@@ -73,12 +73,13 @@ public class AdministradorController {
         @ApiResponse(responseCode = "400", content = { @Content(schema = @Schema(implementation = String.class), mediaType = "application/json") })})
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<AdministradorEDto> findById(@RequestParam @PathVariable Long id){
+    public ResponseEntity<AdministradorEDto> findById(@PathVariable Long id){
         if (id != null){
             Optional<AdministradorEDto> administrador = administradorService.findById(id);
-            return administrador.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+            return administrador.map(eDto -> new ResponseEntity<>(eDto, HttpStatus.OK))
+                    .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         }
-        return ResponseEntity.notFound().build();
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @Operation(
@@ -90,7 +91,7 @@ public class AdministradorController {
             @ApiResponse(responseCode = "400", content = { @Content(schema = @Schema(implementation = String.class), mediaType = "application/json") })})
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<String> deleteById(@RequestParam @PathVariable Long id){
+    public ResponseEntity<String> deleteById(@PathVariable Long id){
         try {
             if (id != null){
                 administradorService.deleteById(id);

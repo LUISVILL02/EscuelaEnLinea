@@ -35,5 +35,6 @@ public class AlumnoGDto {
     private String identificacion;
 
     private String fotografia;
+    private Long idAcudiente;
     private Long idCurso;
 }

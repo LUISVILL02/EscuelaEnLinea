@@ -1,5 +1,6 @@
 package com.arquitecturasoftware.apiescuelaenlinea.controller;
 
+import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.AcudienteEDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.ProfesorEDto;
 import com.arquitecturasoftware.apiescuelaenlinea.service.ProfesorService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -34,12 +35,12 @@ public class ProfesorController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity <?> findById(@RequestParam @NotBlank @PathVariable Long id){
-        try {
-            return new ResponseEntity<>(profesorService.findById(id), HttpStatus.OK);
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
+    public ResponseEntity <?> findById(@NotBlank @PathVariable Long id){
+        if (id != null){
+            Optional<ProfesorEDto> profesorEDto = profesorService.findById(id);
+            return profesorEDto.map(eDto -> new ResponseEntity<>(eDto, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/all")
@@ -51,7 +52,7 @@ public class ProfesorController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<String> deleteById(@RequestParam @NotBlank @PathVariable Long id){
+    public ResponseEntity<String> deleteById(@NotBlank @PathVariable Long id){
         if (id != null){
             profesorService.deleteById(id);
             return ResponseEntity.ok("profesor borrado correctamente");
