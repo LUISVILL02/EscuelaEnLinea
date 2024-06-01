@@ -5,7 +5,7 @@ import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.AsignacionGD
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Asignacion;
 import org.mapstruct.*;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface AsignacionMapper {
 
     @Mappings({
@@ -19,7 +19,8 @@ public interface AsignacionMapper {
     @Mappings({
             @Mapping(source = "profesor.nombre", target = "nombreProfesor"),
             @Mapping(source = "profesor.apellido", target = "apellidoProfesor"),
-            @Mapping(source = "asignatura.nombre", target = "nombreAsignatura")
+            @Mapping(source = "asignatura.nombre", target = "nombreAsignatura"),
+            @Mapping(source = "curso.nombre", target = "nombreCurso")
     })
     AsignacionEDto toEDto(Asignacion asignacion);
 }

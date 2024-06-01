@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -15,4 +16,7 @@ import java.time.LocalDate;
 public class ProfesorEDto extends UsuarioEDto {
     private LocalDate fechaNacimiento;
     private String direccion;
+    List<AsignaturaEDto> asignaturas;
+    List<CursoEDto> cursos;
+    List<AsignacionEDto> asignaciones;
 }

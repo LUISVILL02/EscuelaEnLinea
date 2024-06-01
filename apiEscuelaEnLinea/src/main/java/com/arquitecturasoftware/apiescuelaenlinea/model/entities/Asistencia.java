@@ -32,4 +32,9 @@ public class Asistencia {
     @JoinColumn(name = "id_estado_asistencia")
     private EstadoAsistencia estadoAsistencia;
 
+    //Asignacion
+    @ManyToOne
+    @JoinColumn(name = "id_asignacion")
+    private Asignacion asignacion;
+
 }

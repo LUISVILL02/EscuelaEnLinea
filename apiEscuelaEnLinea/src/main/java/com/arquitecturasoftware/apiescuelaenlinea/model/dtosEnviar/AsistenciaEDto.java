@@ -15,4 +15,5 @@ public class AsistenciaEDto {
     private String nombreAlumno;
     private String apellidoAlumno;
     private String estado;
+    private Long idAsignacion;
 }

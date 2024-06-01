@@ -30,7 +30,20 @@ public class Asignacion {
     @JoinColumn(name = "id_asignatura")
     private Asignatura asignatura;
 
+    //Curso
+    @ManyToOne
+    @JoinColumn(name = "id_curso")
+    private Curso curso;
+
     //Nota
     @OneToMany(mappedBy = "asignacion")
     private List<Nota> notas;
+
+    //Asistencia
+    @OneToMany(mappedBy = "asignacion")
+    private List<Asistencia> asistencias;
+
+    //Observacion
+    @OneToMany(mappedBy = "asignacion")
+    private List<Observacion> observaciones;
 }

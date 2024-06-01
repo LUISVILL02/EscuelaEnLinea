@@ -33,4 +33,9 @@ public class Observacion {
     @ManyToOne
     @JoinColumn(name = "id_alumno")
     private Alumno alumno;
+
+    //Asignacion
+    @ManyToOne
+    @JoinColumn(name = "id_asignacion")
+    private Asignacion asignacion;
 }
