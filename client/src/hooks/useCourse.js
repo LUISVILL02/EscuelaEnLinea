@@ -4,20 +4,20 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 
 const useCourse = () => {
   const [courseD, setCourse] = useState({});
-  const [courseFilterS, setCourseFilterS] = useState(" ");
+  const [courseFilterS, setCourseFilterS] = useState("");
   const [courseFilterOp, setCourseFilterOp] = useState(courseD);
 
-  const { data, refetch, isLoading} = useQuery({
+  const { data, refetch, isLoading } = useQuery({
     queryKey: ["getCourses"],
     queryFn: getCourses,
   });
 
   useEffect(() => {
-    if(!isLoading) {
-        setCourse(data);
-        setCourseFilterOp(data);
+    if (!isLoading) {
+      setCourse(data);
+      setCourseFilterOp(data);
     }
-  }, [data]);
+  }, [data, isLoading]);
 
   const mutationCreate = useMutation({
     mutationFn: createCourse,
@@ -45,7 +45,9 @@ const useCourse = () => {
   };
 
   const handleFilter = (e) => {
-    if (!data) return;
+    if (!data) {
+      return;
+    }
 
     const filter = e.target.value;
 
@@ -58,7 +60,6 @@ const useCourse = () => {
     });
 
     setCourseFilterOp(newData);
-    
   };
 
   return {

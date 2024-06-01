@@ -48,7 +48,7 @@ const ADMIN_ROUTES = [
     path: routes.ADMIN.COURSES,
     element: (
       <PrivateRoutes rol={["ADMIN"]}>
-        <CoursePanel/>
+        <CoursePanel />
       </PrivateRoutes>
     ),
   },

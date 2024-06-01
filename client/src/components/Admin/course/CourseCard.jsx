@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import {
   Accordion,
   AccordionItem,
@@ -14,10 +15,9 @@ import { theme } from "@config";
 import { FaUserGraduate } from "react-icons/fa6";
 import { FaUserCircle, FaUsers } from "react-icons/fa";
 import { RiSchoolLine } from "react-icons/ri";
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { DeleteIcon } from "@chakra-ui/icons";
 
 const CourseCard = ({ course, onDelete }) => {
-
   return (
     <Box>
       <Accordion
@@ -98,7 +98,6 @@ const CourseCard = ({ course, onDelete }) => {
         </AccordionItem>
         <Flex justifyContent="flex-end" gap={2} p={2}>
           <IconButton
-            _hover={{ bgColor: theme.colors.danger[400] }}
             borderRadius={10}
             variant={"outline"}
             color={"black"}
@@ -110,6 +109,11 @@ const CourseCard = ({ course, onDelete }) => {
       </Accordion>
     </Box>
   );
-}
+};
+
+CourseCard.propTypes = {
+  course: PropTypes.object.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
 
 export default CourseCard;

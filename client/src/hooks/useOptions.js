@@ -6,14 +6,18 @@ import {
 } from "../components/Admin/data/mappedData";
 
 const useOptions = (options) => {
+  const { data: teacherData } = useTeacher();
+  const { data: courseData } = useCourse();
 
   if (options.name === "curso") {
-    const { data } = useCourse();
-    return mapCourseData(data);
-  }else if (options.name === "idProfesor") {
-    const { data } = useTeacher();
-    return mapTeacherData(data);
+    return mapCourseData(courseData);
   }
+
+  if (options.name === "idProfesor") {
+    return mapTeacherData(teacherData);
+  }
+
+  return null;
 };
 
 export default useOptions;

@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import {
-  
   Box,
   Flex,
   Text,

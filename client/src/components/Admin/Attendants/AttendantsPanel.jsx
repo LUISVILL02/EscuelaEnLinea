@@ -25,8 +25,6 @@ const AttendantsPanel = () => {
     handleFilter,
   } = useAttendant();
 
-  console.log(AttendantData);
-
   return (
     <Box pb={10}>
       <BannerSection

@@ -9,20 +9,27 @@ import {
   ModalFooter,
   Button,
   FormControl,
-  FormLabel,
-  Input,
-  Select,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import useOptions from "@hooks/useOptions";
+import SelectTeacher from "./types/SelectTeacher";
+import DefaultType from "./types/DefaultType";
 
 const GenericModalForm = ({ isOpen, onClose, fields, postFunction }) => {
   const { handleSubmit, register, reset } = useForm();
 
   const onSubmit = async (data) => {
-    postFunction(data);
+    await postFunction(data);
     onClose();
     reset();
+  };
+
+  const renderField = (field, register) => {
+    switch (field.type) {
+      case "selectTeacher":
+        return <SelectTeacher field={field} register={register} />;
+      default:
+        return <DefaultType field={field} register={register} />;
+    }
   };
 
   return (
@@ -35,23 +42,7 @@ const GenericModalForm = ({ isOpen, onClose, fields, postFunction }) => {
           <ModalBody>
             {fields.map((field) => (
               <FormControl key={field.name} mb={4}>
-                {field.type === "select" ? (
-                  <Select placeholder={field.label} {...register(field.name, field.validationRules)}>
-                    {useOptions(field)?.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </Select>
-                ) : (
-                  <>
-                    <FormLabel>{field.label}</FormLabel>
-                    <Input
-                      type={field.type}
-                      {...register(field.name, field.validationRules)}
-                    />
-                  </>
-                )}
+                {renderField(field, register)}
               </FormControl>
             ))}
           </ModalBody>
@@ -60,7 +51,7 @@ const GenericModalForm = ({ isOpen, onClose, fields, postFunction }) => {
               colorScheme="blue"
               mr={3}
               type="submit"
-              bg={"primary.400"}
+              bg="primary.400"
               _hover={{
                 bg: "#fff",
                 color: "primary.400",

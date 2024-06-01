@@ -1,3 +1,7 @@
+export const customTypes = {
+  selectTeacher: "selectTeacher",
+};
+
 export const fieldsTeacher = [
   {
     name: "nombre",
@@ -136,6 +140,25 @@ export const fieldsAttendant = [
         value: 8,
         message: "La contraseña debe tener al menos 8 caracteres",
       },
+    },
+  },
+];
+
+export const fieldsCourse = [
+  {
+    name: "nombre",
+    label: "Nombre  del curso",
+    type: "text",
+    validationRules: {
+      required: "El nombre es obligatorio",
+    },
+  },
+  {
+    name: "idProfesor",
+    label: "Profesor de grupo",
+    type: customTypes.selectTeacher,
+    validationRules: {
+      required: "El profesor es obligatorio",
     },
   },
 ];

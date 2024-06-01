@@ -6,10 +6,10 @@ import {
   InputGroup,
   InputLeftElement,
   useDisclosure,
-  Select
+  Select,
 } from "@chakra-ui/react";
 import { BannerSection } from "@components/Common";
-import { courseData } from "../data/courseData";
+import { fieldsCourse } from "../data/fields";
 import { FaSearch } from "react-icons/fa";
 import useCourse from "@hooks/useCourse";
 import ButtonAddModal from "../common/ButtonAddModal";
@@ -66,7 +66,7 @@ const CoursePanel = () => {
           </Select>
         </InputGroup>
         <ButtonAddModal
-          fields={courseData}
+          fields={fieldsCourse}
           onOpen={onOpen}
           isOpen={isOpen}
           onClose={onClose}
