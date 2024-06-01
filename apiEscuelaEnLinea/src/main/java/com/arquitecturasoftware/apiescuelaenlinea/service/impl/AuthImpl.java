@@ -58,6 +58,9 @@ public class AuthImpl implements AuthService{
                         .collect(Collectors.toList()))
                 .id(usuario.getIdUser())
                 .identificacion(usuario.getIdentificacion())
+                .nombre(usuario.getNombre())
+                .apellido(usuario.getApellido())
+                .telefono(usuario.getTelefono())
                 .type("Bearer")
                 .build();
     }

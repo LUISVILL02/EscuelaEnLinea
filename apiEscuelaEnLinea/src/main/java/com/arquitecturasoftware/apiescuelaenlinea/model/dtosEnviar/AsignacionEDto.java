@@ -11,4 +11,5 @@ public class AsignacionEDto {
     private String nombreProfesor;
     private String apellidoProfesor;
     private String nombreAsignatura;
+    private String nombreCurso;
 }

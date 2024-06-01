@@ -5,7 +5,7 @@ import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.AsignaturaGD
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Asignatura;
 import org.mapstruct.*;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface AsignaturaMapper {
     AsignaturaGDto toDto(Asignatura asignatura);
     @InheritInverseConfiguration

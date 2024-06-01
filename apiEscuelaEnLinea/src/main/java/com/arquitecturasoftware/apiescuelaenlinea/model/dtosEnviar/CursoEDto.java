@@ -13,4 +13,5 @@ public class CursoEDto {
     private String nombreProfesor;
     private String apellidoProfesor;
     private List<AlumnoEDto> alumnos;
+    private List<AsignacionEDto> asignaciones;
 }

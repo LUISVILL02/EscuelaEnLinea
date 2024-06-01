@@ -26,6 +26,10 @@ public class Curso {
     @OneToMany(mappedBy = "curso")
     private List<Alumno> alumnos;
 
+    //Asignacion
+    @OneToMany(mappedBy = "curso")
+    private List<Asignacion> asignaciones;
+
     //profesor
     @ManyToOne
     @JoinColumn(name = "id_profesor")

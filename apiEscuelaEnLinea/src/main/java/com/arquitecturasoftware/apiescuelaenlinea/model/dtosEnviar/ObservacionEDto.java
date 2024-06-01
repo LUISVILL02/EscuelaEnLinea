@@ -19,4 +19,5 @@ public class ObservacionEDto {
     private String apellidoProfesor;
     private String nombreAlumno;
     private String apellidoAlumno;
+    private Long idAsignacion;
 }

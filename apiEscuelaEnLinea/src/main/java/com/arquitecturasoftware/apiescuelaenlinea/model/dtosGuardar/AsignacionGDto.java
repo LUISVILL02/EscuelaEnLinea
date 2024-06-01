@@ -6,7 +6,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AsignacionGDto {
-    private Long idAsignacion;
     private Long idProfesor;
     private Long idAsignatura;
+    private Long idCurso;
 }

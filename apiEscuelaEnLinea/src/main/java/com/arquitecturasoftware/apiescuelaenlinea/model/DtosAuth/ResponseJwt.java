@@ -13,12 +13,9 @@ public class ResponseJwt {
     private Long id;
     private String identificacion;
     private String email;
+    private String nombre;
+    private String apellido;
+    private String telefono;
     private List<String> roles;
-//    public ResponseJwt(String accessToken, Long id, String identificacion, String email, List<String> roles) {
-//        this.token = accessToken;
-//        this.id = id;
-//        this.identificacion = identificacion;
-//        this.email = email;
-//        this.roles = roles;
-//    }
+
 }
