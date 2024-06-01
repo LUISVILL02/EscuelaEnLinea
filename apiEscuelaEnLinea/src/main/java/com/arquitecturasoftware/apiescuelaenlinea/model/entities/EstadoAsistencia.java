@@ -2,10 +2,7 @@ package com.arquitecturasoftware.apiescuelaenlinea.model.entities;
 
 import com.arquitecturasoftware.apiescuelaenlinea.model.enums.EEstadoAsistencia;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -14,6 +11,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Builder
 public class EstadoAsistencia {
     @Id
