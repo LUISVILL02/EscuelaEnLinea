@@ -8,11 +8,11 @@ import {
   InputLeftElement,
 } from "@chakra-ui/react";
 import { BannerSection } from "@components/Common";
-import { fieldsTeacher } from "./data/fields";
-import ButtonAddModal from "./common/ButtonAddModal";
+import { fieldsTeacher } from "../data/fields";
 import TeacherCard from "./TeacherCard";
 import { FaSearch } from "react-icons/fa";
 import useTeacher from "@hooks/useTeacher";
+import { ButtonAddModal } from "@components/Admin/common";
 
 const TeachersPanel = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();

@@ -6,6 +6,7 @@ export const SnackbarUtilsConfigurator = () => {
   return null;
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const SnackbarUtils = {
   success(msg) {
     this.toast(msg, "success");

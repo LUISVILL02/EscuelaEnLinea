@@ -9,18 +9,27 @@ import {
   ModalFooter,
   Button,
   FormControl,
-  FormLabel,
-  Input,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
+import SelectTeacher from "./types/SelectTeacher";
+import DefaultType from "./types/DefaultType";
 
 const GenericModalForm = ({ isOpen, onClose, fields, postFunction }) => {
   const { handleSubmit, register, reset } = useForm();
 
   const onSubmit = async (data) => {
-    postFunction(data);
+    await postFunction(data);
     onClose();
     reset();
+  };
+
+  const renderField = (field, register) => {
+    switch (field.type) {
+      case "selectTeacher":
+        return <SelectTeacher field={field} register={register} />;
+      default:
+        return <DefaultType field={field} register={register} />;
+    }
   };
 
   return (
@@ -33,11 +42,7 @@ const GenericModalForm = ({ isOpen, onClose, fields, postFunction }) => {
           <ModalBody>
             {fields.map((field) => (
               <FormControl key={field.name} mb={4}>
-                <FormLabel>{field.label}</FormLabel>
-                <Input
-                  type={field.type}
-                  {...register(field.name, field.validationRules)}
-                />
+                {renderField(field, register)}
               </FormControl>
             ))}
           </ModalBody>
@@ -46,7 +51,7 @@ const GenericModalForm = ({ isOpen, onClose, fields, postFunction }) => {
               colorScheme="blue"
               mr={3}
               type="submit"
-              bg={"primary.400"}
+              bg="primary.400"
               _hover={{
                 bg: "#fff",
                 color: "primary.400",

@@ -13,7 +13,6 @@ const useTeacher = () => {
   });
 
   useEffect(() => {
-    console.log("cambio!");
     setTeacherData(data);
   }, [data]);
 
