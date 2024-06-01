@@ -5,13 +5,15 @@ import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.AsistenciaGD
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Asistencia;
 import org.mapstruct.*;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface AsistenciaMapper {
 
     @Mappings({
             @Mapping(source = "alumno.idAlumno", target = "idAlumno"),
             @Mapping(source = "estadoAsistencia.idEstadoAsistencia", target = "idEstadoAsistencia"),
+            @Mapping(source = "asignacion.idAsignacion", target = "idAsignacion")
            })
+
     AsistenciaGDto toDto(Asistencia asistencia);
     @InheritInverseConfiguration
     Asistencia toAsistencia(AsistenciaGDto asistenciaDto);
@@ -19,7 +21,8 @@ public interface AsistenciaMapper {
     @Mappings({
             @Mapping(source = "alumno.nombre", target = "nombreAlumno"),
             @Mapping(source = "alumno.apellido", target = "apellidoAlumno"),
-            @Mapping(source = "estadoAsistencia.estado", target = "estado")
+            @Mapping(source = "estadoAsistencia.estado", target = "estado"),
+            @Mapping(source = "asignacion.idAsignacion", target = "idAsignacion")
     })
     AsistenciaEDto toEDto(Asistencia asistencia);
 }

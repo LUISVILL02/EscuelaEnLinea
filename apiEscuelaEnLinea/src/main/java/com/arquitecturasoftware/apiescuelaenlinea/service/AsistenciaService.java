@@ -9,7 +9,7 @@ import java.util.*;
 public interface AsistenciaService {
     List<AsistenciaEDto> findAll();
     Optional<AsistenciaEDto> findById(long id);
-    void save(AsistenciaGDto asistencia);
-    void delete(AsistenciaEDto asistencia);
+    AsistenciaEDto save(AsistenciaGDto asistencia);
+    void delete(Long id);
     AsistenciaEDto updateById(AsistenciaGDto asistenciaGDto);
 }

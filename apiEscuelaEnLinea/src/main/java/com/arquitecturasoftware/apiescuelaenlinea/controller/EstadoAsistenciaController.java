@@ -19,7 +19,7 @@ import java.util.Optional;
 @RestController
 @Validated
 @AllArgsConstructor
-@RequestMapping("/EscuelaEnLinea/V.1.0.0/EstadoAsistencia")
+@RequestMapping("/EscuelaEnLinea/V.1.0.0/estadoAsistencia")
 @Tag(name = "Estado asistencia", description = "Recurso para gestionar un estado asistencia")
 public class EstadoAsistenciaController {
     private final EstadoAsistenciaService estadoAsistenciaService;
