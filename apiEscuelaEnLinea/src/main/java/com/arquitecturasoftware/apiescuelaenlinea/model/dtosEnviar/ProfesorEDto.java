@@ -16,7 +16,6 @@ import java.util.List;
 public class ProfesorEDto extends UsuarioEDto {
     private LocalDate fechaNacimiento;
     private String direccion;
-    List<AsignaturaEDto> asignaturas;
     List<CursoEDto> cursos;
     List<AsignacionEDto> asignaciones;
 }
