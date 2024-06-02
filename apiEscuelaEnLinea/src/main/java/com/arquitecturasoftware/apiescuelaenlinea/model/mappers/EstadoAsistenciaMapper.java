@@ -5,15 +5,16 @@ import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.EstadoAsiste
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.EstadoAsistencia;
 import org.mapstruct.*;
 
-@Mapper
-public interface EstadoAsitenciaMapper {
+@Mapper(componentModel = "spring")
+public interface EstadoAsistenciaMapper {
+
     EstadoAsistenciaGDto toDto(EstadoAsistencia estadoAsistencia);
     @InheritInverseConfiguration
     EstadoAsistencia toEstadoAsistencia(EstadoAsistenciaGDto estadoAsitenciaDto);
 
     @Mappings({
-            @Mapping(source = "estadoAsistencia.idEstadoAsistencia", target = "idEA"),
-            @Mapping(source = "estadoAsistencia.estado", target = "estado")
+            @Mapping(source = "idEstadoAsistencia", target = "idEA"),
+            @Mapping(source = "estado", target = "estado")
     })
     EstadoAsistenciaEDto toEDto(EstadoAsistencia estadoAsistencia);
 }

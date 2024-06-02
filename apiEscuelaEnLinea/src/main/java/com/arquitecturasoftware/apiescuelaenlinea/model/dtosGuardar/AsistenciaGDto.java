@@ -16,4 +16,5 @@ public class AsistenciaGDto {
 
     private Long idAlumno;
     private Long idEstadoAsistencia;
+    private Long idAsignacion;
 }
