@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface AcudienteRepository extends JpaRepository<Acudiente, Long> {
     Optional<Acudiente> findByNombreAndApellido(String nombre, String apellido);
+    Optional<Acudiente> findByIdentificacion(String identificacion);
 }

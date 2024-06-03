@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -26,22 +27,31 @@ public class AcudienteServiceImp implements AcudienteService {
     @Override
     public List<AcudienteEDto> findAll() {
     List<Acudiente> acudientes = acudienteRepository.findAll();
-    if (acudientes.isEmpty()) throw new EntityNotFoundException("No se encontro el acudiente");
+    if (acudientes.isEmpty()) throw new EntityNotFoundException("No se encontraron acudientes en la base de datos");
     return acudientes.stream().map(acudienteMapper::toEDto).collect(Collectors.toList());
     }
 
     @Override
     public Optional<AcudienteEDto> findByNombreCompleto(String nombre, String apellido) {
+        System.out.println("nombre: " + nombre + " apellido: " + apellido);
+        if (nombre.isEmpty() || apellido.isEmpty()) throw new EntityNotFoundException("No se encontro el acudiente porque faltó un dato");
         Optional<Acudiente> acudiente = acudienteRepository.findByNombreAndApellido(nombre, apellido);
-        if (acudiente.isEmpty()) throw new EntityNotFoundException("No se encontro el acudiente");
+        if (acudiente.isEmpty()) throw new EntityNotFoundException("No se encontro el acudiente con el nombre: "+ nombre + " y apellido: " + apellido + " en la base de datos");
         return acudiente.map(acudienteMapper::toEDto);
     }
 
     @Override
     public Optional<AcudienteEDto> findById(Long id) {
         Optional<Acudiente> acudiente = acudienteRepository.findById(id);
-        if (acudiente.isEmpty()) throw new EntityNotFoundException("No se encontro el acudiente");
+        if (acudiente.isEmpty()) throw new EntityNotFoundException("No se encontro el acudiente con el id: "+ id + " en la base de datos");
         return acudiente.map(acudienteMapper::toEDto);
+    }
+
+    @Override
+    public AcudienteEDto findByIdentifiicacion(String identificacion) {
+        Acudiente acudiente = acudienteRepository.findByIdentificacion(identificacion)
+                .orElseThrow(() -> new EntityNotFoundException("No se encontro el acudiente con la identificación: "+ identificacion));
+        return acudienteMapper.toEDto(acudiente);
     }
 
     @Override
