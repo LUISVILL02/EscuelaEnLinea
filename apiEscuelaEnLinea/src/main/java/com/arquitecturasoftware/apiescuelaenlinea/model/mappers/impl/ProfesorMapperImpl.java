@@ -1,5 +1,7 @@
 package com.arquitecturasoftware.apiescuelaenlinea.model.mappers.impl;
 
+import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.AsignacionEDto;
+import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.CursoEDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.ProfesorEDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.ProfesorGDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Profesor;
@@ -58,6 +60,21 @@ public class ProfesorMapperImpl implements ProfesorMapper {
         profesorDto.setDireccion(profesor.getDireccion());
         profesorDto.setFechaNacimiento(profesor.getFechaNacimiento());
         profesorDto.setRoles(profesor.getRoles().stream().map(role -> role.getName().name()).collect(Collectors.toSet()));
+        profesorDto.setAsignaciones(profesor.getAsignaciones().stream().map(asignacion -> {
+            AsignacionEDto asignacionDto = new AsignacionEDto();
+            asignacionDto.setIdAsignacion(asignacion.getIdAsignacion());
+            asignacionDto.setNombreAsignatura(asignacion.getAsignatura().getNombre());
+            asignacionDto.setNombreCurso(asignacion.getCurso().getNombre());
+            return asignacionDto;
+        }).collect(Collectors.toList()));
+       profesorDto.setCursos(profesor.getCursos().stream().map(curso -> {
+            CursoEDto cursoDto = new CursoEDto();
+            cursoDto.setIdCurso(curso.getIdCurso());
+            cursoDto.setNombre(curso.getNombre());
+            cursoDto.setNombreProfesor(curso.getProfesor().getNombre());
+            cursoDto.setApellidoProfesor(curso.getProfesor().getApellido());
+            return cursoDto;
+        }).collect(Collectors.toList()));
         return profesorDto;
     }
 }

@@ -20,5 +20,4 @@ public interface ProfesorMapper {
     @InheritInverseConfiguration
     Profesor toProfesor(ProfesorGDto profesorDto);
     ProfesorEDto toEDto(Profesor profesor);
-
 }

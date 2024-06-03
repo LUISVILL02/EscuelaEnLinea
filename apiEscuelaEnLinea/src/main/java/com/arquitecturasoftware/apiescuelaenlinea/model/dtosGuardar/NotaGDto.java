@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class NotaGDto {
-    private Long idNota;
 
     @JsonFormat(pattern = "dd/MM/yyyy", timezone = "GMT-5")
     private LocalDate fecha;
