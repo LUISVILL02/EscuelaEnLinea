@@ -5,7 +5,7 @@ import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.NotaGDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Nota;
 import org.mapstruct.*;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface NotaMapper {
 
     @Mappings({
