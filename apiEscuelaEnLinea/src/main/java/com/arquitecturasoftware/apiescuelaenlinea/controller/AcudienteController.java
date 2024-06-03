@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static java.util.Objects.isNull;
+
 @RestController
 @AllArgsConstructor
 @Validated
@@ -21,22 +23,29 @@ import java.util.Optional;
 public class AcudienteController {
     private final AcudienteService acudienteService;
 
-    @GetMapping("/all")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> findAll(){
-        List<AcudienteEDto> acudientes = acudienteService.findAll();
-        if (acudientes.isEmpty()) return new ResponseEntity<>("La lista de acudientes esta vacía", HttpStatus.NO_CONTENT);
-        return new ResponseEntity<>(acudientes, HttpStatus.OK);
-    }
-
     @GetMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<AcudienteEDto> findByFullName(@RequestParam @NotBlank String nombre, @RequestParam @NotBlank String apellido){
-        if (nombre != null && apellido != null) {
-            Optional<AcudienteEDto> acudienteEDto = acudienteService.findByNombreCompleto(nombre, apellido);
-            return acudienteEDto.map(eDto -> new ResponseEntity<>(eDto, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<?> findAll(@RequestParam(required = false) String nombre,
+                                     @RequestParam(required = false) String apellido,
+                                     @RequestParam(required = false) String identificacion){
+        try {
+            if (!isNull(nombre) && !isNull(apellido) && !isNull(identificacion)){
+                return new ResponseEntity<>("Solo debes enviar el nombre y apellido o solo la identificacion", HttpStatus.BAD_REQUEST);
+            }
+            if (!isNull(nombre) && !isNull(apellido)) {
+                Optional<AcudienteEDto> acudienteEDto = acudienteService.findByNombreCompleto(nombre, apellido);
+                return new ResponseEntity<>(acudienteEDto.get(), HttpStatus.OK);
+            }
+            if (!isNull(identificacion)){
+                AcudienteEDto acudienteEDto = acudienteService.findByIdentifiicacion(identificacion);
+                return new ResponseEntity<>(acudienteEDto, HttpStatus.OK);
+            }
+            List<AcudienteEDto> acudientes = acudienteService.findAll();
+            if (acudientes.isEmpty()) return new ResponseEntity<>("La lista de acudientes esta vacía", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(acudientes, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/{id}")
