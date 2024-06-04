@@ -5,7 +5,7 @@ export const createAttendant = async (teacher) => {
 };
 
 export const getAttendant = async () => {
-  return await axios.get("/acudiente/all");
+  return await axios.get("/acudiente");
 };
 
 export const deleteAttendant = async (id) => {

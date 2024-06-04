@@ -162,3 +162,14 @@ export const fieldsCourse = [
     },
   },
 ];
+
+export const fieldSubject = [
+  {
+    name: "nombre",
+    label: "Nombre de la asignatura",
+    type: "text",
+    validationRules: {
+      required: "El nombre es obligatorio",
+    },
+  },
+];
