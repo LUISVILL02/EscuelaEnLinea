@@ -21,7 +21,6 @@ const useOptions = (options) => {
   }
 
   if (options.name === "idAcudiente") {
-    console.log(AttendantData);
     return mapAttendantData(AttendantData);
   }
 

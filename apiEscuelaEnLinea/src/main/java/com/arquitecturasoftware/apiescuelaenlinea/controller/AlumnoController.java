@@ -128,6 +128,7 @@ public class AlumnoController {
                                     "  \"identificacion\": \"12345678\",\n" +
                                     "  \"fotografia\": \"url/fotografia.jpg\",\n" +
                                     "  \"idCurso\": 0\n" +
+                                    "  \"idAcudiente\": 0\n" +
                                     "}",
                             description = "Json con los datos del alumno a actualizar")
             ))

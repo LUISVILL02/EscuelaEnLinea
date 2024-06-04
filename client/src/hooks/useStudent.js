@@ -2,16 +2,17 @@ import {
   getAlumnos,
   createAlumno,
   deleteAlumno,
-  getAlumnoPorAcudiente,
+  updateAlumno,
 } from "@services";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { formatDate } from "@utils";
 
-const useStudent = ({start, limit}) => {
-  const [student, setstudent] = useState({});
-  //const [courseFilterS, setCourseFilterS] = useState("");
-  //const [courseFilterOp, setCourseFilterOp] = useState(courseD);
+const useStudent = ({start, limit}, idAlumno) => {
+  const [student, setstudent] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [filterS, setStudentFilterS] = useState("");
+  const [filtroSelect, setFiltroSelect] = useState("");
 
   const { data, refetch, isLoading } = useQuery({
     queryKey: ["getAlumnos", start, limit],
@@ -19,14 +20,21 @@ const useStudent = ({start, limit}) => {
   });
 
   useEffect(() => {
+    setLoading(isLoading);
     if (!isLoading) {
-      setstudent(data);
-      //setCourseFilterOp(data);
+      setstudent(data.content);
     }
   }, [data, isLoading]);
 
   const mutationCreate = useMutation({
     mutationFn: createAlumno,
+    onSuccess: () => {
+      refetch();
+    },
+  });
+
+  const mutationUpdate = useMutation({
+    mutationFn: updateAlumno,
     onSuccess: () => {
       refetch();
     },
@@ -40,44 +48,69 @@ const useStudent = ({start, limit}) => {
   });
 
   const handleSave = async (data) => {
-    console.log(data)
     const payload = {
       ...data,
       fechaNacimiento: formatDate(data.fechaNacimiento),
     };
-    console.log("handleSave: ",payload)
     mutationCreate.mutate(payload);
   };
+
+  const handleUpdate = async (data) => {
+    const payload = {
+      ...data,
+      fechaNacimiento: formatDate(data.fechaNacimiento),
+      idAlumno: idAlumno,
+    };
+    mutationUpdate.mutate(payload);
+  }
 
   const handleDelete = async (id) => {
     mutationDelete.mutate(id);
   };
 
-//   const handleFilter = (e) => {
-//     if (!data) {
-//       return;
-//     }
+  const handleFilter = (e) => {
+    if (!data) {
+      return;
+    }
+    const filter = e.target.value;
+    let filteredData = [];
 
-//     const filter = e.target.value;
+    if(filtroSelect === "Acudiente"){
+      filteredData = data.content.filter((student) => {
+        const fullName = `${student.nombreAcudiente} ${student.apellidoAcudiente}`;
+        return fullName.toLowerCase().includes(filter.toLowerCase());
+      }
+    )};
+    if (filtroSelect === "Nombre estudiante") {
+      filteredData = data.content.filter((student) => {
+        const fullName = `${student.nombre} ${student.apellido}`;
+        return fullName.toLowerCase().includes(filter.toLowerCase());
+      });
+    };
+    if (filtroSelect === "Curso") {
+      filteredData = data.content.filter((student) => {
+        const fullName = `${student.nombreCurso}`;
+        return fullName.toLowerCase().includes(filter.toLowerCase());
+      });
+    };
+    setstudent(filteredData);
+    setStudentFilterS(filter);
+  };
+  
 
-//     setCourseFilterS(filter);
-
-//     const newData = { ...data };
-
-//     newData.content = newData.content.filter((course) => {
-//       return course.nombre.toLowerCase().includes(filter.toLowerCase());
-//     });
-
-//     setCourseFilterOp(newData);
-//   };
+  const selectFilter = async (e) => {
+    const selectFil = e.target.value;
+    setFiltroSelect(selectFil);
+  }
 
   return {
-    //courseFilter: courseFilterOp,
-    //courseFilterSearh: courseFilterS,
     students: student,
     handleSave,
+    handleUpdate,
     handleDelete,
-    //handleFilter,
+    loading,
+    handleFilter,
+    selectFilter,
   };
 };
 

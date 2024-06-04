@@ -241,9 +241,10 @@ export const fieldsStudent = [
     name: "fotografia",
     label: "Fotografía",
     type: "url",
-    validationRules: {
-      required: "La fotografía es obligatoria",
-    },
+    value:
+      "https://kchsfoundation.org/Portals/0/EasyDNNNews/4/images/default-avatar-250-250-p-L-95.webp",
+    placeholder:
+      "Url de la fotografía del estudiante (opcional)",
   },
   {
     name: "idCurso",
@@ -260,6 +261,5 @@ export const fieldsStudent = [
     validationRules: {
       required: "El acudiente es obligatorio",
     },
-  }
-
+  },
 ];

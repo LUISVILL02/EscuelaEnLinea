@@ -7,20 +7,33 @@ import {
   useColorModeValue,
   Icon,
   IconButton,
+  useDisclosure,
 } from "@chakra-ui/react";
 import {
   FaEnvelope,
   FaPhone,
   FaCalendarAlt,
   FaMapMarkerAlt,
+  FaUserTie,
 } from "react-icons/fa";
 import { theme } from "@config";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import ButtonAddModal from "../common/ButtonAddModal";
+import { fieldsStudent } from "../data/fields";
+import { FaSchoolFlag } from "react-icons/fa6";
 
-const StudentCard = ({ studentData, onDelete }) => {
+const StudentCard = ({ studentData, onDelete, onUpdate, onIdAlumno}) => {
   const bgColor = useColorModeValue("white", "gray.800");
   const textColor = useColorModeValue("gray.700", "gray.300");
   const iconColor = useColorModeValue("primary.400", "primary.300");
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handleSelect = () => {
+    onIdAlumno(studentData.idAlumno);
+  };
+
+  if(isOpen) handleSelect();
 
   return (
     <Box
@@ -28,7 +41,7 @@ const StudentCard = ({ studentData, onDelete }) => {
       p={6}
       borderRadius="lg"
       boxShadow="md"
-      h="350px"
+      h="370px"
       w="300px"
       transition="all 0.3s ease"
       _hover={{
@@ -50,8 +63,18 @@ const StudentCard = ({ studentData, onDelete }) => {
           <Text color={textColor}>cc: {studentData.identificación}</Text>
         </Box>
       </Flex>
-      <Flex direction="column" justifyContent="space-between" maxH={"350px"}>
-        <Box>
+      <Flex
+        direction="column"
+        justifyContent="space-between"
+        h={"200px"}
+        maxH={"300px"}
+      >
+        <Box
+          maxH={"200px"}
+          overflow="auto"
+          h={"180px"}
+          sx={{ "&::-webkit-scrollbar": { display: "none" } }}
+        >
           <Flex align="center" mb={2}>
             <Icon as={FaEnvelope} color={iconColor} mr={2} />
             <Text color={textColor}>{studentData.correo}</Text>
@@ -72,7 +95,25 @@ const StudentCard = ({ studentData, onDelete }) => {
           </Flex>
           <Flex align="center">
             <Icon as={FaMapMarkerAlt} color={iconColor} mr={2} />
-            {studentData.dirección ? (<Text color={textColor}>{studentData.dirección}</Text>) : <Text color={textColor}>Sin dirección</Text>}
+            {studentData.dirección ? (
+              <Text color={textColor}>{studentData.dirección}</Text>
+            ) : (
+              <Text color={textColor}>Sin dirección</Text>
+            )}
+          </Flex>
+          <Flex align="center">
+            <Icon as={FaUserTie} color={iconColor} mr={2} />
+            {studentData.nombreAcudiente && studentData.apellidoAcudiente ? (
+              <Text color={textColor}>
+                {studentData.nombreAcudiente} {studentData.apellidoAcudiente}
+              </Text>
+            ) : (
+              <Text color={textColor}>Sin acudiente</Text>
+            )}
+          </Flex>
+          <Flex align="center" mb={2}>
+            <Icon as={FaSchoolFlag} color={iconColor} mr={2} />
+            <Text color={textColor}>{studentData.nombreCurso}</Text>
           </Flex>
         </Box>
         <Flex justifyContent="flex-end" mt={5} gap={2}>
@@ -84,12 +125,14 @@ const StudentCard = ({ studentData, onDelete }) => {
             onClick={() => onDelete(studentData.idAlumno)}
             icon={<DeleteIcon />}
           />
-          <IconButton
-            borderRadius={10}
-            variant={"outline"}
-            color={"black"}
-            aria-label="Search database"
-            icon={<EditIcon />}
+          <ButtonAddModal
+            fields={fieldsStudent}
+            onOpen={onOpen}
+            isOpen={isOpen}
+            onClose={onClose}
+            saveFunction={onUpdate}
+            bg={theme.colors.gray[400]}
+            message={<EditIcon />}
           />
         </Flex>
       </Flex>

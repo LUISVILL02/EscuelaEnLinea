@@ -1,10 +1,7 @@
 import axios from "axios";
 
 export const createAlumno = async (alumno) => {
-  console.log("service",alumno);
-  const data = await axios.post("/alumno", alumno);
-  console.log("service",data);	
-  return data;
+  return await axios.post("/alumno", alumno);
 };
 
 export const getAlumnos = async ({ queryKey }) => {
@@ -15,8 +12,11 @@ export const deleteAlumno = async (id) => {
   return await axios.delete(`/alumno/${id}`);
 };
 
-export const updateAlumno = async (id, alumno) => {
-  return await axios.put(`/alumno/${id}`, alumno);
+export const updateAlumno = async (data) => {
+  console.log("service: ", data, " ", "id ", data.idAlumno);
+  const dataR = await axios.put(`/alumno/${data.idAlumno}`, data);
+  console.log("data", dataR);
+  return dataR;
 }
 
 export const getAlumnoPorAcudiente = async (id) => {
