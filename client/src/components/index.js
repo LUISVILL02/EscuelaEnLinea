@@ -1,6 +1,7 @@
 export * from "./Admin/Attendants";
+export * from "./Admin/Subjects";
 export * from "./Admin/Teacher";
-export { default as ButtonAddModal } from "./Admin/common/ButtonAddModal";
+export * from "./Admin/common";
 export * from "./Admin/course";
 export * from "./Admin/data/columns";
 export * from "./Admin/data/fields";
@@ -13,7 +14,6 @@ export * from "./Common/GenericModalForm";
 export { default as DefaultType } from "./Common/GenericModalForm/types/DefaultType";
 export { default as SelectTeacher } from "./Common/GenericModalForm/types/Select";
 export * from "./Common/Snackbar";
-export * from "./Common/Table";
 export * from "./Common";
 export * from "./LandingPage/data/blogs";
 export * from "./LandingPage/data/stats";

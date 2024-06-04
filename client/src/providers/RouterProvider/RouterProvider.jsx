@@ -7,6 +7,7 @@ import {
   CoursePanel,
   AttendantsPanel,
   StudentPanel,
+  SubjectsPanel,
 } from "@components";
 import { routes } from "@config";
 import {
@@ -59,7 +60,11 @@ const ADMIN_ROUTES = [
   },
   {
     path: routes.ADMIN.SUBJECTS,
-    element: <div>Subjects</div>,
+    element: (
+      <PrivateRoutes rol={["ADMIN"]}>
+        <SubjectsPanel />
+      </PrivateRoutes>
+    ),
   },
 ];
 

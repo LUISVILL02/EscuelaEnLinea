@@ -1,5 +1,6 @@
 export { default as AdminPanel } from "./AdminPanel";
 export * from "./Attendants";
+export * from "./Subjects";
 export * from "./Teacher";
 export * from "./common";
 export * from "./course";
