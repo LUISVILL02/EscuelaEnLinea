@@ -70,8 +70,8 @@ public class AlumnoController {
 
     @GetMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<Page<AlumnoEDto>> getAlumnos(){
-        return new ResponseEntity<>(alumnoService.getAlumnos(), HttpStatus.OK);
+    public ResponseEntity<Page<AlumnoEDto>> getAlumnos(@RequestParam Integer start, @RequestParam Integer limit){
+        return new ResponseEntity<>(alumnoService.getAlumnos(start, limit), HttpStatus.OK);
     }
 
     @Operation(

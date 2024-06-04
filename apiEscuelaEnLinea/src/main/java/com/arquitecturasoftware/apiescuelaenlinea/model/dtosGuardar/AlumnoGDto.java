@@ -29,10 +29,10 @@ public class AlumnoGDto {
     @JsonFormat(pattern = "dd/MM/yyyy", timezone = "GMT-5")
     private LocalDate fechaNacimiento;
 
-    private String direccion;
+    private String dirección;
 
     @NotBlank(message = "La identificación es obligatoria")
-    private String identificacion;
+    private String identificación;
 
     private String fotografia;
     private Long idAcudiente;
