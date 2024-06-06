@@ -6,6 +6,7 @@ import { formatDate } from "@utils";
 const useAttendant = () => {
   const [attendantTerm, setAttendantTerm] = useState("");
   const [AttendantData, setAttendantData] = useState([]);
+  const [attenadant, setAttendant] = useState({});
 
   const { data, refetch, isLoading } = useQuery({
     queryKey: ["getAttendants"],
@@ -60,6 +61,13 @@ const useAttendant = () => {
     setAttendantData(filteredData);
   };
 
+  const handleId = (id) => {
+    if(!data) return;
+
+    const attendant = data.find((attendant) => attendant.id === id);
+    setAttendant(attendant);
+  }
+
   return {
     attendantTerm,
     AttendantData,
@@ -67,6 +75,7 @@ const useAttendant = () => {
     handleDelete,
     isLoading,
     handleFilter,
+    handleId,
   };
 };
 

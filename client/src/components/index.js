@@ -12,7 +12,7 @@ export * from "./Common/BannerSection";
 export * from "./Common/CardPanel";
 export * from "./Common/GenericModalForm";
 export { default as DefaultType } from "./Common/GenericModalForm/types/DefaultType";
-export { default as SelectTeacher } from "./Common/GenericModalForm/types/SelectTeacher";
+export { default as SelectTeacher } from "./Common/GenericModalForm/types/Select";
 export * from "./Common/Snackbar";
 export * from "./Common";
 export * from "./LandingPage/data/blogs";

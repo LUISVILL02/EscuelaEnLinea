@@ -70,8 +70,8 @@ public class AlumnoController {
 
     @GetMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<Page<AlumnoEDto>> getAlumnos(){
-        return new ResponseEntity<>(alumnoService.getAlumnos(), HttpStatus.OK);
+    public ResponseEntity<Page<AlumnoEDto>> getAlumnos(@RequestParam Integer start, @RequestParam Integer limit){
+        return new ResponseEntity<>(alumnoService.getAlumnos(start, limit), HttpStatus.OK);
     }
 
     @Operation(
@@ -128,6 +128,7 @@ public class AlumnoController {
                                     "  \"identificacion\": \"12345678\",\n" +
                                     "  \"fotografia\": \"url/fotografia.jpg\",\n" +
                                     "  \"idCurso\": 0\n" +
+                                    "  \"idAcudiente\": 0\n" +
                                     "}",
                             description = "Json con los datos del alumno a actualizar")
             ))

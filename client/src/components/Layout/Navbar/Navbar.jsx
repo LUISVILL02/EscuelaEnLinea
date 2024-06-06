@@ -22,6 +22,7 @@ export default function Navbar() {
 
   const rolUser = useUserStore((state) => state.roles[0]);
   const isActive = useUserStore((state) => state.isActive);
+  const name = useUserStore((state) => state.nombre);
 
   if (!isActive()) {
     return (
@@ -117,7 +118,7 @@ export default function Navbar() {
           color={"gray.700"}
           fontWeight={500}
         >
-          Unimagdalena
+          {name}
         </Box>
         <Stack
           flex={{ base: 1, md: 0 }}
