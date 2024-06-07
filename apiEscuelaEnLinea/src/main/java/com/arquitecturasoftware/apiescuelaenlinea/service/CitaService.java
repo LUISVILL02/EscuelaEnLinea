@@ -14,5 +14,6 @@ public interface CitaService {
     List<CitaEDto> findCitasByAcudiente(Long idAcudiente);
     CitaEDto save(CitaGDto citaGDto);
     List<CitaEDto> findCitasByEstadoCita(Long idEstadoCita);
+    String updateEstadoCita(Long idCita, Long idEstadoCita);
 
 }

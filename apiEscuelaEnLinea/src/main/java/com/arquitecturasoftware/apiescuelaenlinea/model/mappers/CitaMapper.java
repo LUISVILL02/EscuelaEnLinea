@@ -5,13 +5,12 @@ import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.CitaGDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Cita;
 import org.mapstruct.*;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CitaMapper {
 
     @Mappings({
             @Mapping(source = "profesor.idUser", target = "idProfesor"),
             @Mapping(source = "acudiente.idUser", target = "idAcudiente"),
-            @Mapping(source = "estadoCita.idEstadoCita", target = "idEstadoCita"),
             })
     CitaGDto toDto(Cita cita);
     @InheritInverseConfiguration

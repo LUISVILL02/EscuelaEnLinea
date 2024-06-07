@@ -11,19 +11,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CitaGDto {
-    private Long idCita;
-
     @NotBlank(message = "La descripción es obligatoria")
     @Size(max = 255, message = "La descripción no puede tener más de 255 caracteres")
     private String descripcion;
 
-    @JsonFormat(pattern = "dd/MM/yyyy", timezone = "GMT-5")
-    private LocalDateTime fechaCreacion;
-
-    @JsonFormat(pattern = "dd/MM/yyyy", timezone = "GMT-5")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "GMT-5")
     private LocalDateTime fechaCita;
 
     private Long idProfesor;
     private Long idAcudiente;
-    private Long idEstadoCita;
 }

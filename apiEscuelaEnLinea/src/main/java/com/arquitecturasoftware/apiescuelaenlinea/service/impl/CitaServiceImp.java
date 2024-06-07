@@ -3,6 +3,7 @@ package com.arquitecturasoftware.apiescuelaenlinea.service.impl;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.CitaEDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.CitaGDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.Cita;
+import com.arquitecturasoftware.apiescuelaenlinea.model.entities.EstadoCita;
 import com.arquitecturasoftware.apiescuelaenlinea.model.mappers.CitaMapper;
 import com.arquitecturasoftware.apiescuelaenlinea.repositories.AcudienteRepository;
 import com.arquitecturasoftware.apiescuelaenlinea.repositories.CitaRepository;
@@ -12,6 +13,8 @@ import com.arquitecturasoftware.apiescuelaenlinea.service.CitaService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -59,7 +62,11 @@ public class CitaServiceImp implements CitaService {
     @Override
     public CitaEDto save(CitaGDto citaGDto) {
         Cita cita = citaMapper.toCita(citaGDto);
-        return citaMapper.toEDto(citaRepository.save(cita));
+        cita.setFechaCreacion(LocalDateTime.now());
+        EstadoCita estadoCita = EstadoCita.builder().idEstadoCita(1L).build();
+        cita.setEstadoCita(estadoCita);
+        Cita citaGuardada = citaRepository.save(cita);
+        return citaMapper.toEDto(citaGuardada);
     }
 
     @Override
@@ -68,5 +75,16 @@ public class CitaServiceImp implements CitaService {
             return citaRepository.getCitasByEstadoCita_IdEstadoCita(idEstadoCita).stream().map(citaMapper::toEDto).collect(Collectors.toList());
         }
         return Collections.emptyList();
+    }
+
+    @Override
+    public String updateEstadoCita(Long idCita, Long idEstadoCita) {
+        Cita cita = citaRepository.findById(idCita)
+                .orElseThrow(() -> new RuntimeException("Cita no encontrada"));
+        EstadoCita estadoCita = estadoCitaRepository.findById(idEstadoCita)
+                .orElseThrow(() -> new RuntimeException("Estado de cita no encontrado"));
+        cita.setEstadoCita(estadoCita);
+        citaRepository.save(cita);
+        return "La cita ha sido " + estadoCita.getNombre() + " exitosamente";
     }
 }

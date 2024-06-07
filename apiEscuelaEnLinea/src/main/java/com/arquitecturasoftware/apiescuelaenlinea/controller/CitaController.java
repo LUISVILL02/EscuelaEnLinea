@@ -5,10 +5,13 @@ import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.CitaEDto;
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.CitaGDto;
 import com.arquitecturasoftware.apiescuelaenlinea.repositories.CitaRepository;
 import com.arquitecturasoftware.apiescuelaenlinea.service.CitaService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -17,26 +20,23 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/EscuelaEnLinea/V.1.0.0/cita")
+@Validated
+@Tag(name = "Cita", description = "Recurso para gestionar las citas")
 public class CitaController {
-    private final CitaRepository citaRepository;
-    CitaService citaService;
+    private final CitaService citaService;
 
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<String> save(@RequestBody CitaGDto citaGDto) {
+    @PreAuthorize("hasRole('ROLE_ACUDIENTE') or hasRole('ROLE_PROFESOR')")
+    public ResponseEntity<?> save(@RequestBody @Valid CitaGDto citaGDto) {
         try {
-            boolean exist = citaRepository.existsById(citaGDto.getIdCita());
-            if (!exist){
-                citaService.save(citaGDto);
-                return new ResponseEntity<>("Se guardo correctamente", HttpStatus.CREATED);
-            }
-            return new ResponseEntity<>("Ya existe la cita", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CREATED).body(citaService.save(citaGDto));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ACUDIENTE') or hasRole('ROLE_PROFESOR')")
     public ResponseEntity<?> findAll(){
         try {
             return ResponseEntity.ok(citaService.findAll());
@@ -66,11 +66,21 @@ public class CitaController {
     }
 
     @GetMapping("/estadoCita/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ACUDIENTE')")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ACUDIENTE') or hasRole('ROLE_PROFESOR')")
     public ResponseEntity<?> getCitasByIdEstadoCita(@PathVariable Long id){
         try {
             return new ResponseEntity<>(citaService.findCitasByEstadoCita(id), HttpStatus.OK);
         } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PatchMapping("/{idCita}/{idEstadoCita}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ACUDIENTE') or hasRole('ROLE_PROFESOR')")
+    public ResponseEntity<?> updateEstadoCita(@PathVariable Long idCita, @PathVariable Long idEstadoCita){
+        try {
+            return ResponseEntity.ok(citaService.updateEstadoCita(idCita, idEstadoCita));
+        } catch (EntityNoFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
