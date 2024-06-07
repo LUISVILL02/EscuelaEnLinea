@@ -15,7 +15,8 @@ import ButtonAddModal from "../common/ButtonAddModal";
 import StudentCard from "./StudentCard";
 import useStudent from "@hooks/useStudent";
 import { fieldsStudent } from "../data/fields";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { decodedToken } from "@utils";
 
 const StudentPanel = () => {
     const page = {
@@ -24,6 +25,15 @@ const StudentPanel = () => {
     }
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [idAlumnoCard, setIdAlumnoCard] = useState(0);
+    const [role, setRole] = useState("Admin");
+
+    const user = decodedToken(localStorage.getItem("token"));
+    useEffect(() => {
+        if (user) {
+            setRole(user.roles[0]);
+            console.log(user.roles[0].name);
+        }
+    }, []);
 
   const {
     students,
@@ -66,14 +76,16 @@ const StudentPanel = () => {
             <option value="Curso">Curso</option>
           </Select>
         </InputGroup>
-        <ButtonAddModal
-          fields={fieldsStudent}
-          onOpen={onOpen}
-          isOpen={isOpen}
-          onClose={onClose}
-          saveFunction={handleSave}
-          message="Añadir"
-        />
+        {role === "ADMIN" && (
+          <ButtonAddModal
+            fields={fieldsStudent}
+            onOpen={onOpen}
+            isOpen={isOpen}
+            onClose={onClose}
+            saveFunction={handleSave}
+            message="Añadir"
+          />
+        )}
       </Flex>
       <Center>
         {loading ? (

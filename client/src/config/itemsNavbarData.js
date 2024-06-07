@@ -4,15 +4,19 @@ export const itemsNavbarData = {
   PROFESOR: [
     {
       label: "Panel",
-      href: "/app",
+      href: routes.PROFESOR.APP,
     },
     {
       label: "Asistencias",
-      href: "/assistance",
+      href: routes.PROFESOR.ASSISTNCE,
     },
     {
       label: "Observaciones",
-      href: "/Remarks",
+      href: routes.PROFESOR.OBSERVATIONS,
+    },
+    {
+      label: "Notas",
+      href: routes.PROFESOR.GRADE,
     },
     {
       label: "Mensajes",
@@ -23,11 +27,15 @@ export const itemsNavbarData = {
   ACUDIENTE: [
     {
       label: "Panel",
-      href: "/app",
+      href: routes.ACUDIENTE.APP,
     },
     {
       label: "Acudidos",
-      href: "/attendees",
+      href: routes.ACUDIENTE.STUDENTS,
+    },
+    {
+      label: "Citas",
+      href: routes.ACUDIENTE.APPOINTMENT,
     },
   ],
   ADMIN: [

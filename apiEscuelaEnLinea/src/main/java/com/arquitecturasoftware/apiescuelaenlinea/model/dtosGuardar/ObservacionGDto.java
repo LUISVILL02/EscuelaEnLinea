@@ -11,15 +11,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ObservacionGDto {
-    private Long idObservacion;
-
-    @JsonFormat(pattern = "dd/MM/yyyy", timezone = "GMT-5")
-    private LocalDate fecha;
-
     @NotBlank(message = "La descripción es obligatoria")
     @Size(max = 255, message = "La descripción no puede tener más de 255 caracteres")
     private String descripcion;
-
     private Long idProfesor;
     private Long idAlumno;
+    private Long idAsignacion;
 }

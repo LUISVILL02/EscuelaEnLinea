@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -75,5 +76,13 @@ public class CursoServiceImp implements CursoService {
         Pageable pageable = PageRequest.of(0, 20);
         Page<Curso> cursos = cursoRepository.findByProfesorId(id, pageable);
         return cursos.map(cursoMapper::toEDto);
+    }
+
+    @Override
+    public List<CursoEDto> listarCursosPorProfesorId(Long id) {
+        profesorRepository.findById(id)
+                .orElseThrow(() -> new EntityNoFoundException("Profesor no encontrado"));
+        List<Curso> cursos = cursoRepository.findByCursoProfesorId(id);
+        return cursos.stream().map(cursoMapper::toEDto).toList();
     }
 }

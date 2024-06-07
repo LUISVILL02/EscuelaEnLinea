@@ -2,6 +2,7 @@ package com.arquitecturasoftware.apiescuelaenlinea.controller;
 
 import com.arquitecturasoftware.apiescuelaenlinea.model.dtosEnviar.AcudienteEDto;
 import com.arquitecturasoftware.apiescuelaenlinea.service.AcudienteService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ import static java.util.Objects.isNull;
 @AllArgsConstructor
 @Validated
 @RequestMapping("/EscuelaEnLinea/V.1.0.0/acudiente")
+@Tag(name = "Acudiente", description = "Recurso para gestionar los acudientes")
 public class AcudienteController {
     private final AcudienteService acudienteService;
 

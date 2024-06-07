@@ -1,3 +1,4 @@
+import { Icon } from "@chakra-ui/react";
 import routes from "./routes";
 
 import {
@@ -6,36 +7,46 @@ import {
   FaUserFriends,
   FaBookOpen,
   FaClipboardList,
+  FaCalendarAlt,
 } from "react-icons/fa";
+import { SiMicrosoftexcel } from "react-icons/si";
+import { MdFeedback, MdAssignment } from "react-icons/md";
+import { BiSolidMessageSquareDetail } from "react-icons/bi";
 
 export const panelCards = {
   PROFESOR: [
     {
-      label: "Panel",
-      href: "/app",
-    },
-    {
       label: "Asistencias",
-      href: "/assistance",
+      href: routes.PROFESOR.ASSISTNCE,
+      Icon: MdAssignment,
     },
     {
       label: "Observaciones",
-      href: "/Remarks",
+      href: routes.PROFESOR.OBSERVATIONS,
+      Icon: MdFeedback,
+    },
+    {
+      label: "Notas",
+      href: routes.PROFESOR.GRADE,
+      Icon: SiMicrosoftexcel,
     },
     {
       label: "Mensajes",
       href: "/messages",
+      Icon: BiSolidMessageSquareDetail,
     },
   ],
   ESTUDIANTE: [],
   ACUDIENTE: [
     {
-      label: "Panel",
-      href: "/app",
+      label: "Acudidos",
+      href: routes.ACUDIENTE.STUDENTS,
+      Icon: FaUserGraduate,
     },
     {
-      label: "Acudidos",
-      href: "/attendees",
+      label: "Citas",
+      href: routes.ACUDIENTE.APPOINTMENT,
+      Icon: FaCalendarAlt,
     },
   ],
   ADMIN: [

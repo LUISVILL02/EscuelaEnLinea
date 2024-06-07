@@ -12,5 +12,13 @@ export default Object.freeze({
   },
   PROFESOR: {
     APP: "/profesor/panel",
+    ASSISTNCE: "/profesor/assistance",
+    OBSERVATIONS: "/profesor/observations",
+    GRADE: "/profesor/grade",
+  },
+  ACUDIENTE: {
+    APP: "/acudiente/panel",
+    STUDENTS: "/acudiente/attendees",
+    APPOINTMENT: "/acudiente/appointment",
   },
 });
