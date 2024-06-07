@@ -5,9 +5,8 @@ import com.arquitecturasoftware.apiescuelaenlinea.model.dtosGuardar.EstadoCitaGD
 import com.arquitecturasoftware.apiescuelaenlinea.model.entities.EstadoCita;
 import org.mapstruct.*;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface EstadoCitaMapper {
-
     EstadoCitaGDto toDto(EstadoCita estadoCita);
     @InheritInverseConfiguration
     EstadoCita toEstadoCita(EstadoCitaGDto estadoCitaDto);

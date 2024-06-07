@@ -16,6 +16,8 @@ import com.arquitecturasoftware.apiescuelaenlinea.service.AsignacionService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class AsignacionServiceImpl implements AsignacionService {
@@ -25,7 +27,7 @@ public class AsignacionServiceImpl implements AsignacionService {
     private final AsignacionMapper asignacionMapper;
     private final AsignacionRepository asignacionRepository;
     @Override
-    public AsignacionEDto hacerAsignacion(AsignacionGDto asignacionGDto) {
+    public AsignacionEDto hacerAsignacion(AsignacionGDto asignacionGDto) throws EntityNoFoundException {
         Profesor profesor = profesorRepository.findById(asignacionGDto.getIdProfesor())
                 .orElseThrow(() -> new EntityNoFoundException("Profesor no encontrado"));
         Curso curso = cursoRepository.findById(asignacionGDto.getIdCurso())
@@ -55,5 +57,14 @@ public class AsignacionServiceImpl implements AsignacionService {
         return false;
     }
 
-
+    @Override
+    public List<String> saveAsignaciones(List<AsignacionGDto> asignaciones) {
+        try {
+            asignaciones.forEach(this::hacerAsignacion);
+            return asignaciones.stream().map(asignacion -> "Asignacion para el profesor: "
+                    +asignacion.getIdProfesor() + " guardada correctamente").toList();
+        } catch (EntityNoFoundException e) {
+            return List.of(e.getMessage());
+        }
+    }
 }

@@ -6,6 +6,10 @@ import {
   TeachersPanel,
   CoursePanel,
   AttendantsPanel,
+  StudentPanel,
+  SubjectsPanel,
+  AttendantView,
+  TeacherView,
 } from "@components";
 import { routes } from "@config";
 import {
@@ -26,7 +30,11 @@ const ADMIN_ROUTES = [
   },
   {
     path: routes.ADMIN.STUDENTS,
-    element: <div>Students</div>,
+    element: (
+      <PrivateRoutes rol={["ADMIN"]}>
+        <StudentPanel />
+      </PrivateRoutes>
+    ),
   },
   {
     path: routes.ADMIN.TEACHERS,
@@ -54,14 +62,59 @@ const ADMIN_ROUTES = [
   },
   {
     path: routes.ADMIN.SUBJECTS,
-    element: <div>Subjects</div>,
+    element: (
+      <PrivateRoutes rol={["ADMIN"]}>
+        <SubjectsPanel />
+      </PrivateRoutes>
+    ),
   },
 ];
 
 const PROFESOR_ROUTES = [
   {
     path: routes.PROFESOR.APP,
-    element: <div>vista profesor</div>,
+    element: (
+      <PrivateRoutes rol={["PROFESOR"]}>
+        <TeacherView />
+      </PrivateRoutes>
+    )
+  },
+  {
+    path: routes.PROFESOR.ASSISTNCE,
+    element: <div>asistencias</div>,
+  },
+  {
+    path: routes.PROFESOR.OBSERVATIONS,
+    element: <div>observaciones</div>,
+  },
+  {
+    path: routes.PROFESOR.GRADE,
+    element: <div>notas</div>,
+  },
+];
+
+const ATTENDANT_ROUTES = [
+  {
+    path: routes.ACUDIENTE.APP,
+    element: (
+      <PrivateRoutes rol={["ACUDIENTE"]}>
+        <AttendantView />
+      </PrivateRoutes>
+    )
+  },
+  {
+    path: routes.ACUDIENTE.STUDENTS,
+    element: (
+      <PrivateRoutes rol={["ACUDIENTE"]}>
+        <div>
+          <h1>Estudiantes Acudidos</h1>
+        </div>
+      </PrivateRoutes>
+    )
+  },
+  {
+    path: routes.ACUDIENTE.APPOINTMENT,
+    element: <div>Citas del acudiente</div>,
   },
 ];
 
@@ -84,6 +137,7 @@ const router = createBrowserRouter([
       },
       ...ADMIN_ROUTES,
       ...PROFESOR_ROUTES,
+      ...ATTENDANT_ROUTES
     ],
   },
 ]);

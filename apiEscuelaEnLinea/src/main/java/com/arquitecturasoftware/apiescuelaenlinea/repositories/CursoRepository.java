@@ -19,4 +19,9 @@ public interface CursoRepository extends JpaRepository<Curso, Long> {
     Optional<Curso> findByNombre(String nombre);
     @Query("SELECT c FROM Curso c WHERE c.profesor.idUser = ?1")
     Page<Curso> findByProfesorId(Long profesorId, Pageable pageable);
+
+    @Query("SELECT c FROM Curso c inner join " +
+            "Asignacion a on c.idCurso = a.curso.idCurso" +
+            " WHERE a.profesor.idUser =?1 ")
+    List<Curso> findByCursoProfesorId(Long profesorId);
 }

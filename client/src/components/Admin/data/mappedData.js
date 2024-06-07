@@ -11,3 +11,10 @@ export const mapTeacherData = (data) => {
     label: item.nombre + " " + item.apellido,
   }));
 };
+
+export const mapAttendantData = (data) => {
+  return data?.map((item) => ({
+    value: item.idUser,
+    label: item.nombre + " " + item.apellido,
+  }));
+};

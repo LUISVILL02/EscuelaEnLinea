@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface AlumnoService {
     AlumnoEDto saveAlumno(AlumnoGDto alumno);
-    Page<AlumnoEDto> getAlumnos();
+    Page<AlumnoEDto> getAlumnos(Integer start, Integer limit);
     AlumnoEDto getAlumnoById(Long id);
     void deleteAlumno(Long id);
     AlumnoEDto updateAlumno(AlumnoGDto alumno, Long id);

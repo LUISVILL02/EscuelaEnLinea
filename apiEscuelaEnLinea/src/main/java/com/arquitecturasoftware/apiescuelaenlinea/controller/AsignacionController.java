@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/EscuelaEnLinea/V.1.0.0/asignacion")
 @AllArgsConstructor
@@ -41,6 +43,17 @@ public class AsignacionController {
     public ResponseEntity<?> delete(@PathVariable Long id){
         try{
             return new ResponseEntity<>(asignacionService.eliminarAsignacion(id), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/saveAsignaciones")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> saveAsignaciones(@RequestBody List<AsignacionGDto> asignaciones){
+        try{
+            asignaciones.forEach(asignacion -> System.out.println(asignacion.getIdProfesor()));
+            return new ResponseEntity<>(asignacionService.saveAsignaciones(asignaciones), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }

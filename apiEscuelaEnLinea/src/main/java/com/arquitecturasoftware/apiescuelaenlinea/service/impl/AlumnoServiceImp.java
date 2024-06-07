@@ -42,8 +42,8 @@ public class AlumnoServiceImp implements AlumnoService {
     }
 
     @Override
-    public Page<AlumnoEDto> getAlumnos() {
-        Pageable pageable = PageRequest.of(0, 20);
+    public Page<AlumnoEDto> getAlumnos(Integer start, Integer limit) {
+        Pageable pageable = PageRequest.of(start, limit);
         Page<Alumno> alumnos = alumnoRepository.findAll(pageable);
         return alumnos.map(alumnoMapper::toEDto);
     }

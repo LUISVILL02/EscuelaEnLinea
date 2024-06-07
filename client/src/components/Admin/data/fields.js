@@ -1,5 +1,7 @@
 export const customTypes = {
   selectTeacher: "selectTeacher",
+  selectCourse: "selectCourse",
+  selectAttendants: "selectAttendants",
 };
 
 export const fieldsTeacher = [
@@ -159,6 +161,105 @@ export const fieldsCourse = [
     type: customTypes.selectTeacher,
     validationRules: {
       required: "El profesor es obligatorio",
+    },
+  },
+];
+
+export const fieldSubject = [
+  {
+    name: "nombre",
+    label: "Nombre de la asignatura",
+    type: "text",
+    validationRules: {
+      required: "El nombre es obligatorio",
+    },
+  },
+];
+
+export const fieldsStudent = [
+  {
+    name: "nombre",
+    label: "Nombre",
+    type: "text",
+    validationRules: {
+      required: "El nombre es obligatorio",
+    },
+  },
+  {
+    name: "apellido",
+    label: "Apellido",
+    type: "text",
+    validationRules: {
+      required: "El apellido es obligatorio",
+    },
+  },
+  {
+    name: "identificación",
+    label: "Identificación",
+    type: "text",
+    validationRules: {
+      required: "La identificación es obligatoria",
+    },
+  },
+  {
+    name: "correo",
+    label: "Correo",
+    type: "email",
+    validationRules: {
+      required: "El correo es obligatorio",
+      pattern: {
+        value: /^\S+@\S+$/i,
+        message: "Correo electrónico inválido",
+      },
+    },
+  },
+  {
+    name: "dirección",
+    label: "Dirección",
+    type: "text",
+    validationRules: {
+      required: "La dirección es obligatoria",
+    },
+  },
+  {
+    name: "telefono",
+    label: "Teléfono",
+    type: "text",
+    validationRules: {
+      required: "El teléfono es obligatorio",
+    },
+  },
+  {
+    name: "fechaNacimiento",
+    label: "Fecha de Nacimiento",
+    type: "date",
+    validationRules: {
+      required: "La fecha de nacimiento es obligatoria",
+    },
+  },
+  {
+    name: "fotografia",
+    label: "Fotografía",
+    type: "url",
+    value:
+      "https://kchsfoundation.org/Portals/0/EasyDNNNews/4/images/default-avatar-250-250-p-L-95.webp",
+    placeholder:
+      "Url de la fotografía del estudiante (opcional)",
+  },
+  {
+    name: "idCurso",
+    label: "Curso inscrito",
+    type: customTypes.selectCourse,
+    validationRules: {
+      required: "El curso es obligatorio",
+    },
+  },
+  {
+    name: "idAcudiente",
+    label: "Acudiente",
+    type: customTypes.selectAttendants,
+    validationRules: {
+      required: "El acudiente es obligatorio",
     },
   },
 ];

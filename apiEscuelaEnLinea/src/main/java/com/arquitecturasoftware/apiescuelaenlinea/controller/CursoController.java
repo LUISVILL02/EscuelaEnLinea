@@ -23,6 +23,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Tag(name = "Curso", description = "Recursos del modulo curso")
@@ -145,4 +146,15 @@ public class CursoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @GetMapping("/profesorId/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_PROFESOR') or hasRole('ROLE_ACUDIENTE')")
+    public ResponseEntity<?> getCusoByIdProfesor(@PathVariable Long id){
+        try{
+            return ResponseEntity.ok(cursoService.listarCursosPorProfesorId(id));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
 }
