@@ -140,7 +140,7 @@ public class AlumnoController {
 
     @GetMapping("/acudiente/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ACUDIENTE')")
-    public ResponseEntity<?> getAlumnoByIdAcudiente(@PathVariable @NotBlank Long id){
+    public ResponseEntity<?> getAlumnoByIdAcudiente(@PathVariable Long id){
         if (id != null){
             List<AlumnoEDto> alumnoEDtos = acudienteService.getAlumnosByAcudiente(id);
             return new ResponseEntity<>(alumnoEDtos, HttpStatus.OK);
