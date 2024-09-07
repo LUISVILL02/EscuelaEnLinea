@@ -1,7 +1,7 @@
 import axios from "axios";
 import { SnackbarUtils } from "@components";
 
-const baseUrl = "http://localhost:8010";
+const baseUrl = "https://escuelaenlinea-production.up.railway.app";
 const projectName = "EscuelaEnLinea";
 const version = "V.1.0.0";
 export const API_URL = `${baseUrl}/${projectName}/${version}`;
