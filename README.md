@@ -58,4 +58,3 @@ Si falta, está mal formada o es inválido el TOKEN, recibirás un código de re
 | `Registrar profesor` | <section style="color: yellow; text-align: center">Post</secction> | `/register/profesor` |
 | `Registrar acudiente` | <section style="color: yellow; text-align: center">Post</secction> | `/register/acudiente` |
 
-### La documentación se irá realizando poco a poco.
